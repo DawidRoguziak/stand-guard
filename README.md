@@ -1,4 +1,7 @@
-![alt text](https://github.com/DawidRoguziak/stand-guard/blob/main/src/assets/images/logo.svg)
+[//]: # (![alt text]&#40;https://github.com/DawidRoguziak/stand-guard/blob/main/src/assets/images/logo.svg&#41;)
+<p align="center">
+  <img src="https://github.com/DawidRoguziak/stand-guard/blob/main/src/assets/images/logo.svg" alt="SG"/>
+</p>
 
 This template should help get you started developing with Vue 3 in Vite.
 
