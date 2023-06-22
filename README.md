@@ -2,9 +2,6 @@
   <img src="https://github.com/DawidRoguziak/stand-guard/blob/main/src/assets/images/logo.svg" alt="SG"/>
 </p>
 
-This template should help get you started developing with Vue 3 in Vite.
-
-
 ## Project Setup
 
 ```sh
