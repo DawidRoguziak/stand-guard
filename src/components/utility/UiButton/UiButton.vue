@@ -10,7 +10,7 @@ const too = () => {
 </script>
 
 <template>
-  <button :type="nativeType" class="ui-button" :class="['ui-button--' + (type ?? 'primary'), {'block': isBlock}]">
+  <button :type="nativeType" class="ui-button" :class="['ui-button--' + type, {'block': isBlock}]">
     <slot></slot>
   </button>
 </template>

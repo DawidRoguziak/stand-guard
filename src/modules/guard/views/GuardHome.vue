@@ -5,11 +5,19 @@ import {STORE_KEY_PROFILE} from "@/modules/profile/stores/ProfileStore";
 import {useI18n} from "vue-i18n";
 import UiList from "@/components/utility/UiList/UiList.vue";
 import UiModal from "@/components/utility/UiModal/UiModal.vue";
+import {ref} from "vue";
+import {set} from "@vueuse/core";
+import {boolean} from "yup";
 
 const {profile} = useInjection(STORE_KEY_PROFILE);
 const {t} = useI18n();
 
-const exampleList = [
+interface IList  {
+  id: number;
+  name: string;
+  type: 'work' | 'exercise';
+}
+const exampleList: IList[] = [
   {
     id: 1,
     name: 'test',
@@ -57,6 +65,13 @@ const exampleList = [
   },
 
 ]
+
+
+const dialog = ref<boolean>();
+
+setTimeout(() => {
+  dialog.value = true;
+}, 3000)
 </script>
 <template>
   <div>
@@ -68,11 +83,13 @@ const exampleList = [
         {{ t('starTodayWork') }} &#8987;
       </UiButton>
       </div>
-      <UiModal />
+      <UiModal v-model:is-open="dialog" />
       <UiList class="plan-grid" key-field="id" :items="exampleList">
         <template #default="{item}">
           <div class="bg-cyan-500/50 rounded p-4 drop-shadow-[0_0_10px_1px_rgba(59,130,246,1)]"
-               :class="{'bg-blue-500/40 is-work': item.type === 'work','bg-amber-400/40 is-exercise': item.type === 'exercise'}">{{ item.name }}</div>
+               :class="{'bg-blue-500/40 is-work': item.type === 'work','bg-amber-400/40 is-exercise': item.type === 'exercise'}">
+            {{ item.name }}
+          </div>
         </template>
       </UiList>
     </div>
