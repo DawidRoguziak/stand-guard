@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import {v4 as uuidv4} from 'uuid';
-import {computed, ref, useSlots, watchEffect} from "vue";
+import {ref} from "vue";
 import type UiModalProps from "@/components/utility/UiModal/UiModalProps";
+import useUuid from "@/composables/useUuid";
+import useModalActions from "@/components/utility/UiModal/useModalActions";
+import useModalSlots from "@/components/utility/UiModal/useModalSlots";
 
-const id = uuidv4();
-const dialogId = computed(() => id);
+const dialogId = useUuid();
 
 const {size = 'medium'} = defineProps<UiModalProps>()
 const isOpenClass = ref<boolean>(false);
@@ -14,31 +15,8 @@ const isOpen = defineModel('isOpen', {
   default: false,
 });
 
-const modalRef = ref<HTMLDialogElement>();
-const slots = useSlots();
-const hasFooterSlot = computed(() => !!slots['footer']);
-
-const open = () => {
-  modalRef.value?.showModal();
-  isOpenClass.value = true;
-}
-
-const close = () => {
-  modalRef.value?.close();
-  isOpen.value = false;
-  setTimeout(() => {
-    isOpenClass.value = false;
-  }, 100);
-}
-
-watchEffect(() => {
-  if (isOpen.value) {
-    open();
-  } else {
-    close();
-  }
-})
-
+const {hasFooterSlot, modalRef} = useModalSlots();
+const {open, close} = useModalActions(modalRef, isOpen, isOpenClass);
 </script>
 
 <template>

@@ -81,9 +81,7 @@ const open = () => {
       </UiButton>
       </div>
       <UiModal v-model:is-open="dialog" >
-        <template #footer>
-          ss
-        </template>
+
       </UiModal>
       <UiList class="plan-grid" key-field="id" :items="exampleList">
         <template #default="{item}">
