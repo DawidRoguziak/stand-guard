@@ -10,10 +10,6 @@ const open = () => {
   modalRef.value?.showModal();
 }
 
-setTimeout(() => {
-  open();
-}, 4000);
-
 </script>
 
 <template>
