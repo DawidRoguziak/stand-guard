@@ -1,17 +1,9 @@
+import 'vue-router'
 import {createRouter, createWebHistory} from 'vue-router';
 import type {NavigationGuardNext, RouteLocationNormalized} from 'vue-router';
 import profileRouts from "@/modules/profile/profileRouts";
 import guardRouts from "@/modules/guard/guardRouts";
 import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
-
-declare module 'vue-router' {
-    interface RouteMeta {
-        // is optional
-        isAdmin?: boolean
-        // must be declared by every route
-        requiresAuth: boolean
-    }
-}
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,28 +11,30 @@ const router = createRouter({
         {
             path: '/',
             name: 'entry-point-of-app',
-            component: () => import((`../components/views/ViewEntryPointOfApp.vue`))
+            component: () => import((`../components/views/ViewEntryPointOfApp.vue`)),
         },
         {
             path: '/profile',
             children: [
                 ...profileRouts
-            ]
+            ],
+            meta: {
+                requireProfile: true
+            }
         },
         {
             path: '/guard',
             children: [
                 ...guardRouts
-            ]
+            ],
         },
 
         {path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import((`../components/views/View404.vue`))},
     ]
 });
 
-
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    if (!useProfileStore().isMinimumOneProfile && to.name !== 'create-first-profile') {
+    if (to.meta.requireProfile && !useProfileStore().isMinimumOneProfile && to.name !== 'create-first-profile') {
         return next({name: 'create-first-profile'});
     }
 

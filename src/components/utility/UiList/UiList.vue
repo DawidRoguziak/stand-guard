@@ -1,7 +1,7 @@
 <script lang="ts" setup generic="T">
 import type UiListProps from "@/components/utility/UiList/UiListProps";
 
-defineProps<UiListProps>()
+defineProps<UiListProps<T>>()
 </script>
 
 <template>
