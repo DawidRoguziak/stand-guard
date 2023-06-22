@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import type UiButtonsProps from "@/components/utility/UiButton/UiButtonsProps";
+import type UiButtonProps from "@/components/utility/UiButton/UiButtonProps";
 
-const {type = 'primary', nativeType = 'button', isBlock = false} = defineProps<UiButtonsProps>();
-
-const too = () => {
-  console.log('too');
-}
-
+const {type = 'primary', nativeType = 'button', isBlock = false} = defineProps<UiButtonProps>();
 </script>
 
 <template>

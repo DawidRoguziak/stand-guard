@@ -6,6 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    outline: none;
+}
+
 html, body, #app {
     font-family: 'Inter', sans-serif;
     width: 100%;
