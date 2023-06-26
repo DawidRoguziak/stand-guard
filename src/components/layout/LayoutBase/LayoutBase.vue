@@ -5,7 +5,7 @@
         <div class="flex justify-between place-items-center h-full">
           <div class="text-gray-50">
             <h3 class="dark:text-gray-50 text-teal-700 ">
-              <SvgLogo style="width: 100px;height: 40px;"/>
+              <SvgLogo class="w-[100px] h-[40px]" />
             </h3>
           </div>
           <span class="material-symbols-outlined cursor-pointer dark:text-gray-50 text-teal-700" @click="toggleAside">
@@ -22,8 +22,8 @@
            max-sm:absolute max-sm:top-0 max-sm:left-0 max-sm:bottom-0 max-sm:z-50
            max-sm:overflow-auto
           ">
-          <div class="mb-5 mt-5  ">
-            <SvgLogo style="width: 100px;height: 50px;" />
+          <div class="mb-5 mt-5  flex justify-center max-md:hidden">
+            <SvgLogo class="w-[100px] h-[50px]" />
           </div>
           <UiMenu/>
           <!--          delete this component after work-->
