@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/DawidRoguziak/stand-guard/blob/main/src/assets/images/logo.svg" alt="SG"/>
+  <img src="https://github.com/DawidRoguziak/stand-guard/blob/main/public/images/logo.svg" alt="SG"/>
 </p>
 
 ## Project Setup
