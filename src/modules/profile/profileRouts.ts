@@ -4,7 +4,7 @@ export default [
         name: 'profile-main',
         component: () => import((`@/modules/profile/ProfileIndex.vue`)),
         meta: {
-            requireProfile: true
+            requireProfile: false
         },
         children: [
             {
@@ -12,7 +12,7 @@ export default [
                 name: 'create-first-profile',
                 component: () => import((`@/modules/profile/views/FirstProfileCreate.vue`)),
                 meta: {
-                    requireProfile: true
+                    requireProfile: false
                 }
             }
         ]
