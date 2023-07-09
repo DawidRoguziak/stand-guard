@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full">
+  <div class="w-full h-full layout-base">
     <el-container>
       <el-header class="dark:bg-slate-900/60 bg-slate-100 md:hidden app-header">
         <div class="flex justify-between place-items-center h-full">
@@ -47,12 +47,11 @@ import UiChangeTheme from "@/components/utility/UiChangeTheme/UiChangeTheme.vue"
 import {computed, ref, watch} from "vue";
 import {useWindowSize} from "@vueuse/core";
 import type UiMenuOption from "@/components/utility/UiMenu/UiMenuOption";
-import {useI18n} from "vue-i18n";
 import useProvide from "@/composables/useProvide";
 import {MENU_KEY_OPTIONS, PAGE_HEIGHT_CLASS, PAGE_PADDING_CLASS_KEY} from "@/constants/injection-keys";
 import UiMenu from "@/components/utility/UiMenu/UiMenu.vue";
 import SvgLogo from "@/components/svg/SvgLogo.vue";
-import {getRouts} from "./route-list";
+import {menuRouts} from "./route-list";
 
 const hideAside = ref(false);
 const {width} = useWindowSize();
@@ -74,8 +73,7 @@ const toggleAside = () => {
   hideAside.value = !hideAside.value;
 }
 
-const {t} = useI18n();
-const routs: UiMenuOption[] = getRouts(t);
+const routs: UiMenuOption[] = menuRouts;
 
 const pagePaddingClass = ref<string>('p-4');
 const pageHeightClass = ref<string>('');
