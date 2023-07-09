@@ -52,6 +52,7 @@ import useProvide from "@/composables/useProvide";
 import {MENU_KEY_OPTIONS, PAGE_HEIGHT_CLASS, PAGE_PADDING_CLASS_KEY} from "@/constants/injection-keys";
 import UiMenu from "@/components/utility/UiMenu/UiMenu.vue";
 import SvgLogo from "@/components/svg/SvgLogo.vue";
+import {getRouts} from "./route-list";
 
 const hideAside = ref(false);
 const {width} = useWindowSize();
@@ -74,23 +75,7 @@ const toggleAside = () => {
 }
 
 const {t} = useI18n();
-const routs: UiMenuOption[] = [
-  {
-    icon: 'safety_check',
-    label: t('home'),
-    urlName: 'guard-home'
-  },
-  {
-    icon: 'edit_calendar',
-    label: t('planDefinition'),
-    urlName: 'guard-define-plan'
-  },
-  {
-    icon: 'manage_accounts',
-    label: t('Create first profile'),
-    urlName: 'create-first-profile'
-  }
-]
+const routs: UiMenuOption[] = getRouts(t);
 
 const pagePaddingClass = ref<string>('p-4');
 const pageHeightClass = ref<string>('');
