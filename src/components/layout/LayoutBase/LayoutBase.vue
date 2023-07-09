@@ -109,15 +109,28 @@ useProvide(PAGE_HEIGHT_CLASS, pageHeightClass);
   }
 }
 
+html {
+  .app-header {
+    min-width: calc(var(--el-aside-width) - 20px);
+    background: rgb(241, 245 ,249);
+    background: linear-gradient(210deg, rgba(15, 118, 110, 0.6) 0%, rgb(241, 245 ,249) 39%);
+  }
+
+  .app-menu {
+    background: rgb(241, 245 ,249);
+    background: linear-gradient(to top,hsla(175.34, 77%, 26%, 0.6) 0%, rgb(241, 245 ,249) 46%);
+  }
+}
+
 html.dark {
   .app-header {
-    background: rgb(15, 118, 110);
+    background: hsla(175.34, 77%, 26%, 1);
     background: linear-gradient(210deg, rgba(15, 118, 110, 0.6) 0%, rgba(15, 23, 42, 1) 39%);
   }
 
   .app-menu {
-    background: rgb(15, 118, 110);
-    background: linear-gradient(35deg, rgba(15, 118, 110, 0.6) 0%, rgb(15, 23, 42) 46%);
+    background: hsla(175.34, 77%, 26%, 1);
+    background: linear-gradient(to top,hsla(175.34, 77%, 26%, 0.6) 0%, hsla(222.222, 47%, 11%, 1) 46%);
   }
 }
 </style>

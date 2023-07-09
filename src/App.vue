@@ -33,6 +33,6 @@ onMounted(() => {
     </teleport>
   </el-config-provider>
 </template>
-<style>
-@import "assets/main.css";
+<style lang="scss">
+@import "assets/styles/main.scss";
 </style>

@@ -25,7 +25,7 @@ const options: UiMenuOption[] = useInjection(MENU_KEY_OPTIONS);
 <style lang="scss" scoped>
 
 .menu-item {
-  @apply text-teal-900;
+  @apply text-teal-900 whitespace-nowrap;
 
   .material-symbols-outlined {
     @apply dark:text-gray-50 text-teal-900;
