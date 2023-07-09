@@ -1,6 +1,6 @@
 import {describe, it, expect} from 'vitest'
 
-import {DOMWrapper, mount} from '@vue/test-utils'
+import {mount} from '@vue/test-utils'
 
 import LayoutBase from "@/components/layout/LayoutBase/LayoutBase.vue";
 
@@ -16,7 +16,7 @@ describe('LayoutBase', () => {
         expect(wrapper.classes()).toContain('layout-base')
     });
 
-    it('default slot render content', () => {
+    it('default slot should render content', () => {
         const wrapper = mount(LayoutBase, {
             slots: {
                 default: '<div>Default slot render</div>'
