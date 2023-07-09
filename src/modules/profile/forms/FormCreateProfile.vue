@@ -8,10 +8,8 @@ import {useI18n} from "vue-i18n";
 import {useLangStore} from "@/langs/LangStore";
 import {useGlobalLoaderStore} from "@/components/utility/GlobalLoader/GlobalLoaderStore";
 import {useRouter} from "vue-router";
-import useInjection from "@/composables/useInjection";
-import type {Profile} from "@/modules/profile/stores/Profile";
 import UiButton from "@/components/utility/UiButton/UiButton.vue";
-import {STORE_KEY_PROFILE} from "@/modules/profile/stores/ProfileStore";
+import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 
 const schema = object({
   name: string().required().min(3).max(20),
@@ -22,7 +20,7 @@ const {setLang, getLang} = useLangStore();
 const {push} = useRouter();
 const {showLoader, hideLoader} = useGlobalLoaderStore();
 
-const {createProfile, selectLastCreatedProfile, profile} = useInjection(STORE_KEY_PROFILE);
+const {createProfile, selectLastCreatedProfile, profile} = useProfileStore();
 const onSubmit = (values: any) => {
   showLoader();
   setLang(values.lang);

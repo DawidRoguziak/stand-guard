@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import useInjection from "@/composables/useInjection";
 import {ref} from "vue";
 import {storeToRefs} from "pinia";
-import {STORE_KEY_PROFILE} from "@/modules/profile/stores/ProfileStore";
+import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 
-const profileStore = useInjection(STORE_KEY_PROFILE);
+const profileStore = useProfileStore();
 const {profile} = storeToRefs(profileStore);
 const isDark = ref<boolean>(profile.value?.theme === 'dark');
 

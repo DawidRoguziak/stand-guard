@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import useInjection from "@/composables/useInjection";
 import UiButton from "@/components/utility/UiButton/UiButton.vue";
-import {STORE_KEY_PROFILE} from "@/modules/profile/stores/ProfileStore";
+import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 import {useI18n} from "vue-i18n";
 
-const {profile} = useInjection(STORE_KEY_PROFILE);
+const {profile} = useProfileStore();
 const {t} = useI18n();
-
 
 </script>
 <template>

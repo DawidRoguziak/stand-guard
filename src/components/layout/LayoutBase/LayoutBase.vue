@@ -56,7 +56,6 @@ import SvgLogo from "@/components/svg/SvgLogo.vue";
 const hideAside = ref(false);
 const {width} = useWindowSize();
 
-
 watch(() => width.value, () => {
   if (width.value < 768) {
     hideAside.value = true;
@@ -93,10 +92,10 @@ const routs: UiMenuOption[] = [
   }
 ]
 
-useProvide(MENU_KEY_OPTIONS, routs);
-
 const pagePaddingClass = ref<string>('p-4');
 const pageHeightClass = ref<string>('');
+
+useProvide(MENU_KEY_OPTIONS, routs);
 useProvide(PAGE_PADDING_CLASS_KEY, pagePaddingClass);
 useProvide(PAGE_HEIGHT_CLASS, pageHeightClass);
 
