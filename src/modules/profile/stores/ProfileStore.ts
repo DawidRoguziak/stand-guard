@@ -1,11 +1,9 @@
 import {ref,} from 'vue';
 import type {Ref} from 'vue';
 import {defineStore} from 'pinia';
-import type {Store} from 'pinia';
 import {APP_DB_NAME} from "@/constants/constants";
 import type {Profile} from "@/modules/profile/stores/Profile";
 import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
-import type {InjectionKey} from "vue";
 
 export type ProfileStore = {
     profile: Ref<Profile | null>;
