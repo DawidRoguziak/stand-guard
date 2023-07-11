@@ -2,7 +2,7 @@
 import {Field, ErrorMessage} from 'vee-validate'
 
 import {ref} from "vue";
-import type {UiTextInputProps} from "@/components/form-elements/UiTextInput/UiTextInputProps";
+import type {UiTextInputProps} from "@/components/ui/form-elements/UiTextInput/UiTextInputProps";
 
 const internalValue = ref<any>('')
 

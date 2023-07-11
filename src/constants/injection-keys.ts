@@ -1,5 +1,5 @@
 import type {InjectionKey} from "vue";
-import type {UiMenuOption} from "@/components/utility/UiMenu/UiMenuOption";
+import type {UiMenuOption} from "@/components/ui/UiMenu/UiMenuOption";
 import type {Ref} from "vue";
 export const MENU_KEY_OPTIONS: InjectionKey<UiMenuOption[]> = Symbol('UiMenuOption');
 export const PAGE_PADDING_CLASS_KEY: InjectionKey<Ref<string>> = Symbol('pagePadding');

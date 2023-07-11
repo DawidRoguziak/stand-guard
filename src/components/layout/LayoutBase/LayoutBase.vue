@@ -43,13 +43,13 @@
 </template>
 
 <script setup lang="ts">
-import UiChangeTheme from "@/components/utility/UiChangeTheme/UiChangeTheme.vue";
+import UiChangeTheme from "@/components/ui/UiChangeTheme/UiChangeTheme.vue";
 import {computed, ref, watch} from "vue";
 import {useWindowSize} from "@vueuse/core";
-import type {UiMenuOption} from "@/components/utility/UiMenu/UiMenuOption";
+import type {UiMenuOption} from "@/components/ui/UiMenu/UiMenuOption";
 import useProvide from "@/composables/useProvide";
 import {MENU_KEY_OPTIONS, PAGE_HEIGHT_CLASS, PAGE_PADDING_CLASS_KEY} from "@/constants/injection-keys";
-import UiMenu from "@/components/utility/UiMenu/UiMenu.vue";
+import UiMenu from "@/components/ui/UiMenu/UiMenu.vue";
 import SvgLogo from "@/components/svg/SvgLogo.vue";
 import {menuRouts} from "./route-list";
 

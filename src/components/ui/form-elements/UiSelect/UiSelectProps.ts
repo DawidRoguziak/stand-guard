@@ -1,4 +1,4 @@
-import type {FormElementsProps} from "@/components/form-elements/FormElementsProps";
+import type {FormElementsProps} from "@/components/ui/form-elements/FormElementsProps";
 
 type UiSelectOptions = {
     label: string;
