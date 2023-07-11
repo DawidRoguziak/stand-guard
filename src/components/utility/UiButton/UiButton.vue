@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type UiButtonProps from "@/components/utility/UiButton/UiButtonProps";
+import type {UiButtonProps} from "@/components/utility/UiButton/UiButtonProps";
 
 const {type = 'primary', nativeType = 'button', isBlock = false} = defineProps<UiButtonProps>();
 </script>

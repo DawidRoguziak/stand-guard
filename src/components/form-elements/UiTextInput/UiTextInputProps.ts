@@ -1,6 +1,6 @@
-import type FormElementsProps from "@/components/form-elements/FormElementsProps";
+import type {FormElementsProps} from "@/components/form-elements/FormElementsProps";
 
-export default interface UiTextInputProps extends FormElementsProps {
+export type UiTextInputProps  = FormElementsProps & {
     value?: string;
     type?: 'text' | 'textarea';
     showPassword?: boolean;

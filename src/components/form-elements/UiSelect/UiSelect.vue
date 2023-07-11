@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type UiSelectProps from "@/components/form-elements/UiSelect/UiSelectProps";
+import type {UiSelectProps} from "@/components/form-elements/UiSelect/UiSelectProps";
 import {ref} from "vue";
 import {ErrorMessage, Field} from "vee-validate";
 

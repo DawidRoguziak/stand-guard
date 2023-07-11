@@ -1,4 +1,4 @@
-export default interface UiModalProps {
+export type UiModalProps = {
     isOpen?: boolean;
     size?: 'small' | 'medium' | 'large';
 }

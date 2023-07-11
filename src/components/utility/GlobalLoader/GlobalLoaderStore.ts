@@ -2,7 +2,7 @@ import {defineStore} from "pinia";
 import {ref} from "vue";
 import type {Ref} from "vue";
 
-export interface GlobalLoaderStore {
+export type GlobalLoaderStore =  {
     isLoading: Ref<boolean>;
     showLoader: () => void;
     hideLoader: () => void;

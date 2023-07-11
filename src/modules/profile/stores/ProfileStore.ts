@@ -7,7 +7,7 @@ import type {Profile} from "@/modules/profile/stores/Profile";
 import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
 import type {InjectionKey} from "vue";
 
-export interface ProfileStore {
+export type ProfileStore = {
     profile: Ref<Profile | null>;
     isMinimumOneProfile: Ref<boolean>;
     createProfile: (profile: Omit<Profile, 'id'>) => Promise<void>;
@@ -19,8 +19,6 @@ export interface ProfileStore {
     readPreferredLocalStorage: () => Promise<void>;
     setTheme: (theme: ThemeTypes) => void;
 }
-export const STORE_KEY_PROFILE: InjectionKey<Store<'profile',ProfileStore>> = Symbol('ProfileStore')
-
 
 const STORE_NAME = 'profiles';
 const PREFERRED_PROFILE_LOCAL_STORAGE_KEY = 'preferredProfileId';

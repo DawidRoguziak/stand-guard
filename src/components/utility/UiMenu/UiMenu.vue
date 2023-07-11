@@ -2,7 +2,7 @@
 
 import useInjection from "@/composables/useInjection";
 import {MENU_KEY_OPTIONS} from "@/constants/injection-keys";
-import type UiMenuOption from "@/components/utility/UiMenu/UiMenuOption";
+import type {UiMenuOption} from "@/components/utility/UiMenu/UiMenuOption";
 import {useI18n} from "vue-i18n";
 
 const options: UiMenuOption[] = useInjection(MENU_KEY_OPTIONS);

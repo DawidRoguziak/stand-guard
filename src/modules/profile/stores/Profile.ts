@@ -1,7 +1,7 @@
 import type {LangTypes} from "@/langs/LangStore";
 import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
 
-export interface Profile {
+export type Profile = {
     id: number;
     name: string;
     username: string;

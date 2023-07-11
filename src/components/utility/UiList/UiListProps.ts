@@ -1,4 +1,4 @@
-export default interface UiListProps<T>{
+export type UiListProps<T> = {
     items: T[];
     keyField: keyof T;
 }

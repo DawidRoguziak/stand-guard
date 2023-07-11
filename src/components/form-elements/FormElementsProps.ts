@@ -1,4 +1,4 @@
-export default interface FormElementsProps {
+export type FormElementsProps = {
     name: string;
     placeholder?: string;
 }
