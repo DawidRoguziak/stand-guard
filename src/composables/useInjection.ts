@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 import type { InjectionKey } from 'vue';
 
-export default function useInjection<T>(key: InjectionKey<T>): T | Error {
+export default function useInjection<T>(key: InjectionKey<T>): T {
     const injectedValue = inject(key)
 
     if (!injectedValue) {

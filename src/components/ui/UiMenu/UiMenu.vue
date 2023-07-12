@@ -5,7 +5,7 @@ import {MENU_KEY_OPTIONS} from "@/constants/injection-keys";
 import type {UiMenuOption} from "@/components/ui/UiMenu/UiMenuOption";
 import {useI18n} from "vue-i18n";
 
-let options: UiMenuOption[]  = null;
+let options: UiMenuOption[]  = [];
 
 try {
   options = useInjection(MENU_KEY_OPTIONS);

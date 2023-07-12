@@ -20,7 +20,7 @@ describe('UiMenu', () => {
         const wrapper = mount(UiMenu, {
             global: {
                 provide : {
-                    [MENU_KEY_OPTIONS]: menuRouts
+                    [Symbol('UiMenuOption')]: menuRouts
                 }
             }
         });

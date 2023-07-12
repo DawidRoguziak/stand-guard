@@ -2,9 +2,15 @@
 import useInjection from "@/composables/useInjection";
 import {PAGE_HEIGHT_CLASS} from "@/constants/injection-keys";
 import {useI18n} from "vue-i18n";
+import type {Ref} from "vue";
 
-const pageHeightClass = useInjection(PAGE_HEIGHT_CLASS)
-pageHeightClass.value = 'h-screen';
+let pageHeightClass: Ref<string>;
+try {
+  pageHeightClass = useInjection(PAGE_HEIGHT_CLASS);
+  pageHeightClass.value = 'h-screen';
+} catch (e) {
+
+}
 
 const {t} = useI18n();
 </script>
