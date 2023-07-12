@@ -1,14 +1,10 @@
 <script lang="ts" setup>
 import {Form as VeeForm} from 'vee-validate';
-import UiTextInput from "@/components/ui/form-elements/UiTextInput/UiTextInput.vue";
 import {object, string} from "yup";
-import UIBlock from "@/components/ui/UiBlock/UIBlock.vue";
-import UiSelect from "@/components/ui/form-elements/UiSelect/UiSelect.vue";
 import {useI18n} from "vue-i18n";
 import {useLangStore} from "@/langs/LangStore";
 import {useGlobalLoaderStore} from "@/components/utility/GlobalLoader/GlobalLoaderStore";
 import {useRouter} from "vue-router";
-import UiButton from "@/components/ui/UiButton/UiButton.vue";
 import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 
 const schema = object({

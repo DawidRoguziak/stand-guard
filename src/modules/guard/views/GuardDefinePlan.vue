@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UiButton from "@/components/ui/UiButton/UiButton.vue";
 import useInjection from "@/composables/useInjection";
 import {PAGE_HEIGHT_CLASS} from "@/constants/injection-keys";
 import {useI18n} from "vue-i18n";

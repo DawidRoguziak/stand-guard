@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import UiButton from "@/components/ui/UiButton/UiButton.vue";
 import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 import {useI18n} from "vue-i18n";
 
