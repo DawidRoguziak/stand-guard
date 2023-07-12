@@ -18,15 +18,13 @@
   .ui-block {
     --ui-block-bg: #fff;
     --ui-block-box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
-    --ui-block-border-radius: 4px;
-    --ui-block-padding: 12px;
   }
 }
 
 .ui-block {
   background: var(--ui-block-bg);
   box-shadow: var(--ui-block-box-shadow);
-  border-radius: var(--ui-block-border-radius);
-  padding: var(--ui-block-padding);
+  border-radius: var(--ui-block-border-radius, 4px);
+  padding: var(--ui-block-padding, 12px);
 }
 </style>

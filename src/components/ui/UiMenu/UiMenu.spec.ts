@@ -10,6 +10,12 @@ import globalSetupForTest from "@/__test__/globalSetupForTest";
 globalSetupForTest();
 
 describe('UiMenu', () => {
+    it('should work without options', () => {
+        const wrapper = mount(UiMenu);
+
+        expect(wrapper.classes()).toContain('ui-menu');
+    });
+
     it('should render menu options', () => {
         const wrapper = mount(UiMenu, {
             global: {
@@ -17,7 +23,7 @@ describe('UiMenu', () => {
                     [MENU_KEY_OPTIONS]: menuRouts
                 }
             }
-        })
+        });
 
         const menuItems = menuRouts.map(item => item.urlName);
 

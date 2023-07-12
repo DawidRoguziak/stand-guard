@@ -5,12 +5,18 @@ import {MENU_KEY_OPTIONS} from "@/constants/injection-keys";
 import type {UiMenuOption} from "@/components/ui/UiMenu/UiMenuOption";
 import {useI18n} from "vue-i18n";
 
-const options: UiMenuOption[] = useInjection(MENU_KEY_OPTIONS);
+let options: UiMenuOption[]  = null;
+
+try {
+  options = useInjection(MENU_KEY_OPTIONS);
+} catch (e) {
+  options = [];
+}
 const {t} = useI18n();
 
 </script>
 <template>
-  <div v-if="options" class="w-full h-auto flex gap-2 flex-col p-3">
+  <div v-if="options" class="w-full h-auto flex gap-2 flex-col p-3 ui-menu">
     <RouterLink v-for="item in options" :to="{name: item.urlName}" exact-active-class="active"
                 :menu-url-name="item.urlName"
                 class="menu-item rounded-md p-2 duration-100 flex align-middle"
