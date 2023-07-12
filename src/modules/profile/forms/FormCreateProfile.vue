@@ -9,7 +9,7 @@ import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 
 const schema = object({
   name: string().required().min(3).max(20),
-})
+});
 
 const {t} = useI18n();
 const {setLang, getLang} = useLangStore();
