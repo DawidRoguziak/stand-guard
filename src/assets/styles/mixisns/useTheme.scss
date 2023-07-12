@@ -1,0 +1,12 @@
+@mixin useLightTheme {
+  html.light {
+    @content;
+  }
+}
+
+
+@mixin useDarkTheme {
+  html.dark {
+    @content;
+  }
+}
