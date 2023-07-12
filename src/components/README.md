@@ -5,6 +5,8 @@
 `layout` directory contains the components that define layouts. Naming convention is `Layout{ComponentName}`.
 
 `ui` directory contains the components that are used in the UI. Naming convention is `UI{ComponentName}`.
+`global-register.ts` file is used to register the components that are used globally in the app, but to have ts 
+know that u need to add record in `components.d.ts` file.
 
 `utils` directory contains the components that are specific like `GlobalLoader` which is used once in app. Naming
 convention is `{ComponentName}`.
