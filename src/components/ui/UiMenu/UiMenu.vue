@@ -10,7 +10,7 @@ const {t} = useI18n();
 
 </script>
 <template>
-  <div class="w-full h-auto flex gap-2 flex-col p-3">
+  <div v-if="options" class="w-full h-auto flex gap-2 flex-col p-3">
     <RouterLink v-for="item in options" :to="{name: item.urlName}" exact-active-class="active"
                 :menu-url-name="item.urlName"
                 class="menu-item rounded-md p-2 duration-100 flex align-middle"
