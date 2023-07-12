@@ -41,7 +41,7 @@ const onSubmit = (values: any) => {
 </script>
 
 <template>
-  <UIBlock>
+  <UiBlock>
     <VeeForm class="ui-form"
              @submit="onSubmit"
              :validation-schema="schema"
@@ -60,5 +60,5 @@ const onSubmit = (values: any) => {
         {{ t('create') }}
       </UiButton>
     </VeeForm>
-  </UIBlock>
+  </UiBlock>
 </template>
