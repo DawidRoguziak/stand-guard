@@ -9,11 +9,23 @@ globalSetupForTest();
 
 describe('UiSelect', () => {
     it('should render', () => {
-        isRendered(UiSelect, 'ui-select');
+        isRendered(UiSelect,{
+            props: {
+                options: [{label: 'opt1', value: 'value1'}, {label: 'opt2', value: 'value2'}],
+                name: 'test',
+                teleported: false // for test data visible in doom
+            },
+        }, 'ui-select');
     });
 
     it('should be visible ', () => {
-        isVisible(UiSelect);
+        isVisible(UiSelect, {
+            props: {
+                options: [{label: 'opt1', value: 'value1'}, {label: 'opt2', value: 'value2'}],
+                name: 'test',
+                teleported: false // for test data visible in doom
+            },
+        });
     });
 
     it('should render options', async () => {
