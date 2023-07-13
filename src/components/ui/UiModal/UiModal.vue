@@ -77,6 +77,10 @@ const {open, close} = useModalActions(modalRef, isOpen, isOpenClass);
     @apply rounded-full dark:bg-neutral-700 bg-gray-100 text-base leading-none p-1 cursor-pointer select-none;
   }
 
+  &--full {
+    @apply w-2/3 max-md:w-11/12 max-xl:w-2/3;
+  }
+
   &--large {
     @apply w-2/3 max-md:w-11/12 max-xl:w-2/3;
   }

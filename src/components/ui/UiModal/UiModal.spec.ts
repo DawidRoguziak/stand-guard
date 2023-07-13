@@ -45,15 +45,21 @@ describe('UiModal', () => {
         expect(wrapper.classes()).toContain('ui-modal--medium');
     });
 
-    it('should has default size medium', async function () {
-        const wrapper = mount(UiModal, {
-            props: {
-                isOpen: true
-            }
-        })
+    it('should take more size as param', async function () {
+        const sizes = ['small', 'medium', 'large', 'full'];
 
-        await wrapper.vm.$nextTick();
+        for (const size of sizes) {
+            const wrapper = mount(UiModal as any, {
+                props: {
+                    isOpen: true,
+                    size,
+                }
+            })
 
-        expect(wrapper.classes()).toContain('ui-modal--medium');
+            await wrapper.vm.$nextTick();
+
+            expect(wrapper.classes()).toContain(`ui-modal--${size}`);
+        }
+
     });
 });
