@@ -1,4 +1,4 @@
-import {watchEffect} from "vue";
+import {nextTick, watchEffect} from "vue";
 import type {Ref} from "vue";
 
 export default function useModalActions(
@@ -6,7 +6,12 @@ export default function useModalActions(
     isOpen: Ref<boolean>,
     isOpenClass: Ref<boolean>
 ) {
-    const open = () => {
+    const open = async () => {
+        await nextTick();
+        if (!modalRef.value) {
+            return;
+        }
+
         modalRef.value?.showModal();
         isOpenClass.value = true;
     }
