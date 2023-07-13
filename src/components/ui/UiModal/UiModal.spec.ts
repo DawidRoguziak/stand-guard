@@ -46,7 +46,7 @@ describe('UiModal', () => {
     });
 
     it('should take more size as param', async function () {
-        const sizes = ['small', 'medium', 'large', 'full'];
+        const sizes = ['small', 'medium', 'large'];
 
         for (const size of sizes) {
             const wrapper = mount(UiModal as any, {

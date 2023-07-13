@@ -21,25 +21,28 @@ const {open, close} = useModalActions(modalRef, isOpen, isOpenClass);
 
 <template>
   <dialog ref="modalRef" :id="dialogId" class="ui-modal" :class="[{'open': isOpenClass}, 'ui-modal--' + size]">
-    <div class="ui-modal__header">
-      <slot name="header">
-        <span class="ui-modal__close material-symbols-outlined" @click="close">
-          close
-        </span>
-      </slot>
-    </div>
-    <div class="ui-modal__body">
-      <slot>
-      </slot>
-    </div>
-    <div v-show="hasFooterSlot" class="ui-modal__footer">
-      <slot name="footer"></slot>
+    <div class="ui-modal__content">
+      <div class="ui-modal__header">
+        <slot name="header">
+          <span class="ui-modal__close material-symbols-outlined" @click="close">
+            close
+          </span>
+        </slot>
+      </div>
+      <div class="ui-modal__body">
+        <slot>
+        </slot>
+      </div>
+      <div v-show="hasFooterSlot" class="ui-modal__footer">
+        <slot name="footer"></slot>
+      </div>
     </div>
   </dialog>
 </template>
 
 <style lang="scss" scoped>
 .ui-modal {
+  $self: &;
   margin-block-start: 10%;
   @apply rounded p-0 border-none;
 
@@ -75,10 +78,6 @@ const {open, close} = useModalActions(modalRef, isOpen, isOpenClass);
 
   &__close {
     @apply rounded-full dark:bg-neutral-700 bg-gray-100 text-base leading-none p-1 cursor-pointer select-none;
-  }
-
-  &--full {
-    @apply w-2/3 max-md:w-11/12 max-xl:w-2/3;
   }
 
   &--large {
