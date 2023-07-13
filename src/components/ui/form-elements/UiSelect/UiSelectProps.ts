@@ -7,4 +7,5 @@ type UiSelectOptions = {
 export type UiSelectProps = FormElementsProps & {
     options: UiSelectOptions[];
     placeholder?: string;
+    teleported?: boolean;
 }

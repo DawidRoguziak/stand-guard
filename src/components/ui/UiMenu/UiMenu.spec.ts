@@ -4,7 +4,6 @@ import {mount} from "@vue/test-utils";
 import UiMenu from "@/components/ui/UiMenu/UiMenu.vue";
 
 import {menuRouts} from "@/components/layout/LayoutBase/route-list";
-import {MENU_KEY_OPTIONS} from "@/constants/injection-keys";
 import globalSetupForTest from "@/__test__/globalSetupForTest";
 
 globalSetupForTest();
