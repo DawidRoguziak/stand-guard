@@ -2,7 +2,7 @@ import {expect} from 'vitest';
 import {mount} from '@vue/test-utils';
 import type {MountingOptions} from '@vue/test-utils';
 
-export function isVisible(component: unknown, options: MountingOptions<any>) {
+export function isVisible(component: unknown, options: MountingOptions<any> = {}) {
     if (!component) {
         expect(component).not.toBeUndefined()
         return
