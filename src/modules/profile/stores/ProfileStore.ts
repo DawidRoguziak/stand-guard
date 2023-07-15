@@ -5,6 +5,8 @@ import {APP_DB_NAME} from "@/constants/constants";
 import type {Profile} from "@/modules/profile/stores/Profile";
 import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
 
+// TODO refactor this store it should work only for "active" profile.
+
 export type ProfileStore = {
     profile: Ref<Profile | null>;
     isMinimumOneProfile: Ref<boolean>;
