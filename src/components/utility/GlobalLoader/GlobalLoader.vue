@@ -1,5 +1,5 @@
 <template>
-  <div v-show="isLoading">
+  <div v-show="isLoading" class="global-loader">
     <UiLoader class="global"/>
     <UiOverlay />
   </div>

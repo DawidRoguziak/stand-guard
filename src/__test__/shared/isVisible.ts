@@ -2,13 +2,15 @@ import {expect} from 'vitest';
 import {mount} from '@vue/test-utils';
 import type {MountingOptions} from '@vue/test-utils';
 
-export function isVisible(component: unknown, options: MountingOptions<any> = {}) {
+export async function isVisible(component: unknown, options: MountingOptions<any> = {}) {
     if (!component) {
         expect(component).not.toBeUndefined()
         return
     }
 
     const wrapper = mount(component, options)
+
+    await wrapper.vm.$nextTick();
 
     const style = getComputedStyle(wrapper.element)
     expect(style.visibility).not.toBe('hidden')
