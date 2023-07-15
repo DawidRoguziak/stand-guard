@@ -1,5 +1,4 @@
 import {createI18n} from 'vue-i18n';
-import type {I18n} from 'vue-i18n';
 import en from '@/langs/en';
 import pl from '@/langs/pl';
 export const i18nInstanceSettings = {
