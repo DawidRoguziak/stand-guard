@@ -4,12 +4,12 @@ import router from "@/router";
 
 export default async function afterRootComponentCreated(): Promise<void> {
 
-    const {profile} = useActiveProfile();
+    const {profile, selectProfileFromReferences} = useActiveProfile();
     if (profile && profile.lang) {
         useLangStore().setLang(profile.lang);
     }
 
-    await useActiveProfile().selectProfileFromReferences().then((profile) => {
+    await selectProfileFromReferences().then((profile) => {
         if (profile) {
             router.push({name: 'guard-home'});
         }

@@ -1,5 +1,5 @@
 import type {Profile} from "@/modules/profile/stores/Profile";
 
 export type StoreProfileDbWrite = {
-    createProfile: (profile: Omit<Profile, 'id'>) => Promise<number>;
+    createProfile: (profile: Omit<Profile, 'id'>) => Promise<number | Error>;
 }

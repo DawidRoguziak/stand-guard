@@ -49,11 +49,21 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
             return null
         }
 
-       return setProfile(profileId);
+        return setProfile(profileId);
     }
     const createProfileAndSetAsActiveProfile = async (profile: Omit<Profile, 'id'>): Promise<void> => {
-        const profileId = await createProfile(profile);
-        await setProfile(profileId);
+        return new Promise(async (resolve, reject) => {
+            const profileId = await createProfile(profile).catch(() => {
+                reject();
+            });
+
+            if (!profileId || !Number.isInteger(profileId)) {
+                return;
+            }
+
+            await setProfile(Number(profileId));
+            resolve();
+        }) ;
     }
 
     return {

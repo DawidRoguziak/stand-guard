@@ -6,7 +6,7 @@ import {useLangStore} from "@/langs/LangStore";
 import {useGlobalLoaderStore} from "@/components/utility/GlobalLoader/GlobalLoaderStore";
 import {useRouter} from "vue-router";
 import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
-import {storeToRefs} from "pinia";
+import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
 
 const schema = object({
   name: string().required().min(3).max(20),
@@ -18,18 +18,24 @@ const {push} = useRouter();
 const {showLoader, hideLoader} = useGlobalLoaderStore();
 
 const {createProfileAndSetAsActiveProfile} = useActiveProfile();
-const {profile} = storeToRefs(useActiveProfile());
-const onSubmit = async (values: any) => {
+const onSubmit = (values: any) => {
   showLoader();
-  await createProfileAndSetAsActiveProfile({
+  createProfileAndSetAsActiveProfile({
     lang: values.lang,
     name: values.name,
     username: values.username,
     theme: values.theme,
     plan: null
-  });
-  hideLoader();
-  push({name: 'guard-home'});
+  })
+      .then(async () => {
+        await useProfileCounter().countProfiles();
+        push({name: 'guard-home'});
+      })
+      .catch(() => {
+      })
+      .finally(() => {
+        hideLoader();
+      });
 }
 </script>
 

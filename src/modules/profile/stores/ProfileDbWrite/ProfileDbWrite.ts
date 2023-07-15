@@ -4,7 +4,7 @@ import type {Profile} from "@/modules/profile/stores/Profile";
 import type {StoreProfileDbWrite} from "@/modules/profile/stores/ProfileDbWrite/ProfileDbWrite.type";
 
 export const useProfileDbWriter = defineStore('profileDbWriter', (): StoreProfileDbWrite => {
-    const createProfile = (profile: Omit<Profile, 'id'>): Promise<number> => {
+    const createProfile = (profile: Omit<Profile, 'id'>): Promise<number | Error> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await ProfileDb();
             const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
