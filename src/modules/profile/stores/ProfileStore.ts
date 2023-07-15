@@ -11,14 +11,14 @@ export type ProfileStore = {
     createProfile: (profile: Omit<Profile, 'id'>) => Promise<void>;
     getAllProfiles: () => Promise<Profile[]>;
     deleteProfile: (id: number) => Promise<void>;
-    updateProfile: (profile: Partial<Profile>) => Promise<void>;
+    updateProfile: (profile: Omit<Partial<Profile>, 'id'>) => Promise<void>;
     selectProfileById: (id: number) => void;
     selectLastCreatedProfile: () => Promise<void>;
     readPreferredLocalStorage: () => Promise<void>;
     setTheme: (theme: ThemeTypes) => void;
 }
 
-const STORE_NAME = 'profiles';
+export const DB_STORE_NAME_PROFILE = 'profiles';
 const PREFERRED_PROFILE_LOCAL_STORAGE_KEY = 'preferredProfileId';
 
 export const useProfileStore = defineStore('profile', (): ProfileStore => {
@@ -32,7 +32,9 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
             request.onsuccess = () => resolve(request.result);
             request.onupgradeneeded = event => {
                 const db = (event.target as IDBOpenDBRequest).result;
-                db.createObjectStore(STORE_NAME, {keyPath: 'id', autoIncrement: true});
+                if (!db.objectStoreNames.contains(DB_STORE_NAME_PROFILE)) {
+                    db.createObjectStore(DB_STORE_NAME_PROFILE, {keyPath: 'id', autoIncrement: true});
+                }
             };
         });
     }
@@ -40,8 +42,8 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
     const createProfile = (profile: Omit<Profile, 'id'>): Promise<void> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction: IDBTransaction = db.transaction(STORE_NAME, 'readwrite');
-            const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request: IDBRequest = store.add(profile);
             request.onerror = () => reject(request.error);
             request.onsuccess = () => resolve();
@@ -51,8 +53,8 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
     const getAllProfiles = (): Promise<Profile[]> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction: IDBTransaction = db.transaction(STORE_NAME, 'readonly');
-            const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request: IDBRequest = store.getAll();
             request.onerror = () => reject(request.error);
             request.onsuccess = () => resolve(request.result);
@@ -62,15 +64,15 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
     const deleteProfile = (id: number): Promise<void> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction: IDBTransaction = db.transaction(STORE_NAME, 'readwrite');
-            const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request: IDBRequest = store.delete(id);
             request.onerror = () => reject(request.error);
             request.onsuccess = () => resolve();
         });
     }
 
-    const updateProfile = (updateProfileData: Partial<Profile>): Promise<void> => {
+    const updateProfile = (updateProfileData: Omit<Partial<Profile>, 'id'>): Promise<void> => {
         if (!profile.value?.id) {
             return Promise.reject('Profile id is not defined');
         }
@@ -79,8 +81,8 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
 
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction: IDBTransaction = db.transaction(STORE_NAME, 'readwrite');
-            const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request: IDBRequest = store.put(updatedProfile);
             request.onerror = () => reject(request.error);
             request.onsuccess = () => {
@@ -95,8 +97,8 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
     const selectProfileById = (id: number): Promise<void> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction: IDBTransaction = db.transaction(STORE_NAME, 'readonly');
-            const store: IDBObjectStore = transaction.objectStore(STORE_NAME);
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request: IDBRequest = store.get(id);
             request.onerror = () => reject(request.error);
             request.onsuccess = () => {
@@ -113,8 +115,8 @@ export const useProfileStore = defineStore('profile', (): ProfileStore => {
     const selectLastCreatedProfile = (): Promise<void> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await openDb();
-            const transaction = db.transaction(STORE_NAME, 'readonly');
-            const store = transaction.objectStore(STORE_NAME);
+            const transaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
+            const store = transaction.objectStore(DB_STORE_NAME_PROFILE);
             const request = store.openCursor(null, 'prev');
             request.onerror = () => reject(request.error);
             request.onsuccess = () => {

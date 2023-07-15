@@ -9,6 +9,7 @@ const isDark = ref<boolean>(profile.value?.theme === 'dark');
 
 const onChangeTheme = () => {
   profileStore.updateProfile({
+    id:1,
     theme: isDark.value ? 'dark' : 'light'
   });
 }
