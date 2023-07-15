@@ -4,5 +4,5 @@ import type {ComputedRef} from "vue";
 
 export default function useUuid(): ComputedRef<string> {
     const id = uuidv4();
-    return computed(() => id);
+    return computed(() => id)
 }

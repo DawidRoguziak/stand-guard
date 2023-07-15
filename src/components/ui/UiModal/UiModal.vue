@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import type {UiModalProps} from "@/components/ui/UiModal/UiModalProps";
-import useUuid from "@/composables/useUuid";
+import useUuid from "@/composables/useUuid/useUuid";
 import useModalActions from "@/components/ui/UiModal/useModalActions";
 import useModalSlots from "@/components/ui/UiModal/useModalSlots";
 
