@@ -13,5 +13,18 @@ describe('LangStore', () => {
     it('default state', () => {
         const lang = useLangStore();
         expect(lang.langList).toEqual(['en', 'pl']);
+        expect(lang.getLang).toEqual('en');
+    });
+
+    it('setLang', () => {
+        const lang = useLangStore();
+        lang.setLang('pl');
+        expect(lang.getLang).toEqual('pl');
+    });
+
+    it('getLang', () => {
+        const lang = useLangStore();
+        lang.setLang('pl');
+        expect(lang.getLang).toEqual('pl');
     });
 });
