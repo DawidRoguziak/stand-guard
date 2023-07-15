@@ -32,7 +32,7 @@ describe('GlobalLoaderStore', () => {
         expect(globalLoader.isLoading).toBe(false);
     });
 
-    it('should be not loading after showLoader', () => {
+    it('should be loading after showLoader', () => {
         const globalLoader = useGlobalLoaderStore();
         globalLoader.hideLoader();
         expect(globalLoader.isLoading).toBe(false);
