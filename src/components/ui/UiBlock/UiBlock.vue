@@ -14,12 +14,11 @@
   }
 }
 
-@include mixins.useLightTheme {
-  .ui-block {
-    --ui-block-bg: #fff;
-    --ui-block-box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
-  }
+.ui-block {
+  --ui-block-bg: #fff;
+  --ui-block-box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
 }
+
 
 .ui-block {
   background: var(--ui-block-bg);

@@ -1,10 +1,5 @@
-import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
-import router from "@/router";
+import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
 
-export default async function beforeRouterInit (): Promise<void> {
-   await useActiveProfile().selectProfileFromReferences().then((profile) => {
-         if (profile) {
-            router.push({name: 'guard-home'});
-         }
-   }).catch(() => {});
+export default async function beforeRouterInit(): Promise<void> {
+    await useProfileCounter().countProfiles();
 }

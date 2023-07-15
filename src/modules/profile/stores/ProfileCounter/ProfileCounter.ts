@@ -16,6 +16,7 @@ export const useProfileCounter = defineStore('profileCounter', (): StoreProfileC
 
     const countProfiles = async (): Promise<void> => {
         const counted = await count();
+
         if (counted) {
             isMinimumOneProfile.value = counted;
         }

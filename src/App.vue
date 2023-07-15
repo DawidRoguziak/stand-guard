@@ -7,7 +7,6 @@ import afterRootComponentMount from "@/hooks/afterRootComponentMount";
 import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
 
 useProfileCounter().countProfiles();
-console.log(useProfileCounter().getProfilesCounter);
 afterRootComponentCreated();
 
 onMounted(() => {

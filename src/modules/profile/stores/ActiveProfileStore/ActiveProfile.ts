@@ -8,11 +8,13 @@ import {
 } from "@/modules/profile/stores/ProfileLocalStorageManagerStore/ProfileLocalStorageManager";
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
 import type {StoreActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile.type";
+import {useLangStore} from "@/langs/LangStore";
 
 export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {
     const profile = ref<Profile | null>(null);
 
     const {getProfileById} = useProfileDbRead();
+    const {setLang} = useLangStore();
     const {createProfile} = useProfileDbWriter();
 
     const {setPreferredLocalStorage, readPreferredLocalStorage} = useProfileLocalStorageManager();
@@ -25,7 +27,10 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
                 return;
             }
 
-            const newProfile = await getProfileById(profileId);
+            const newProfile = await getProfileById(profileId).catch(() => {
+                reject(null);
+            });
+
             if (!newProfile) {
                 return;
             }
@@ -33,6 +38,7 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
             profile.value = newProfile;
             setPreferredLocalStorage(newProfile.id);
             setTheme(newProfile.theme);
+            setLang(newProfile.lang);
             resolve(newProfile);
         });
     }
@@ -46,8 +52,8 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
        return setProfile(profileId);
     }
     const createProfileAndSetAsActiveProfile = async (profile: Omit<Profile, 'id'>): Promise<void> => {
-        await createProfile(profile);
-        await setProfile(1);
+        const profileId = await createProfile(profile);
+        await setProfile(profileId);
     }
 
     return {

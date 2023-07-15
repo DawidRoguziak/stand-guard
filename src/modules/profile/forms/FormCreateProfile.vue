@@ -21,7 +21,6 @@ const {createProfileAndSetAsActiveProfile} = useActiveProfile();
 const {profile} = storeToRefs(useActiveProfile());
 const onSubmit = async (values: any) => {
   showLoader();
-  setLang(values.lang);
   await createProfileAndSetAsActiveProfile({
     lang: values.lang,
     name: values.name,
@@ -29,9 +28,8 @@ const onSubmit = async (values: any) => {
     theme: values.theme,
     plan: null
   });
-
   hideLoader();
-  // push({name: 'guard-home'});
+  push({name: 'guard-home'});
 }
 </script>
 

@@ -34,7 +34,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    if (to.meta.requireProfile && !useProfileCounter().getProfilesCounter && to.name !== 'create-first-profile') {
+    if (to.meta.requireProfile && useProfileCounter().getProfilesCounter === 0 && to.name !== 'create-first-profile') {
         return next({name: 'create-first-profile'});
     }
 

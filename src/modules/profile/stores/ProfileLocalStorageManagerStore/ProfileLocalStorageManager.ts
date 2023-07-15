@@ -13,7 +13,7 @@ export const  useProfileLocalStorageManager = defineStore('profileLocalStorageMa
         localStorage.removeItem(PREFERRED_PROFILE_LOCAL_STORAGE_KEY);
     }
 
-    const readPreferredLocalStorage = (): Promise<Number | null> => {
+    const readPreferredLocalStorage = (): Promise<number | null> => {
         return new Promise(async (resolve, reject) => {
             const id = localStorage.getItem(PREFERRED_PROFILE_LOCAL_STORAGE_KEY);
             if (id) {
