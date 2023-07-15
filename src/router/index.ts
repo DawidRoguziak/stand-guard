@@ -3,7 +3,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import type {NavigationGuardNext, RouteLocationNormalized} from 'vue-router';
 import profileRouts from "@/modules/profile/profileRouts";
 import guardRouts from "@/modules/guard/guardRouts";
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
+import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,7 +34,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
-    if (to.meta.requireProfile && !useProfileStore().isMinimumOneProfile && to.name !== 'create-first-profile') {
+    if (to.meta.requireProfile && !useProfileCounter().getProfilesCounter && to.name !== 'create-first-profile') {
         return next({name: 'create-first-profile'});
     }
 

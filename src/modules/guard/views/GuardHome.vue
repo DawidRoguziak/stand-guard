@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 import {useI18n} from "vue-i18n";
+import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
 
-const {profile} = useProfileStore();
+const {profile} = useActiveProfile();
 const {t} = useI18n();
 
 </script>

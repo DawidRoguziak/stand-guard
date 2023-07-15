@@ -5,7 +5,8 @@ import {useI18n} from "vue-i18n";
 import {useLangStore} from "@/langs/LangStore";
 import {useGlobalLoaderStore} from "@/components/utility/GlobalLoader/GlobalLoaderStore";
 import {useRouter} from "vue-router";
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
+import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
+import {storeToRefs} from "pinia";
 
 const schema = object({
   name: string().required().min(3).max(20),
@@ -16,28 +17,22 @@ const {setLang, getLang} = useLangStore();
 const {push} = useRouter();
 const {showLoader, hideLoader} = useGlobalLoaderStore();
 
-const {createProfile, selectLastCreatedProfile, profile} = useProfileStore();
-const onSubmit = (values: any) => {
+const {createProfileAndSetAsActiveProfile} = useActiveProfile();
+const {profile} = storeToRefs(useActiveProfile());
+const onSubmit = async (values: any) => {
   showLoader();
   setLang(values.lang);
-  createProfile({
+  await createProfileAndSetAsActiveProfile({
     lang: values.lang,
     name: values.name,
     username: values.username,
     theme: values.theme,
     plan: null
-  }).then(() => {
-    selectLastCreatedProfile()
-        .then(() => {
-          push({name: 'guard-home'});
-          hideLoader();
-        })
-        .catch(() => {
-          hideLoader();
-        })
   });
-}
 
+  hideLoader();
+  // push({name: 'guard-home'});
+}
 </script>
 
 <template>

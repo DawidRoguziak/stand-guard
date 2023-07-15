@@ -3,9 +3,11 @@ import {RouterView} from 'vue-router'
 import GlobalLoader from "@/components/utility/GlobalLoader/GlobalLoader.vue";
 import afterRootComponentCreated from "@/hooks/afterRootComponentCreated";
 import {onMounted} from "vue";
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 import afterRootComponentMount from "@/hooks/afterRootComponentMount";
+import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
 
+useProfileCounter().countProfiles();
+console.log(useProfileCounter().getProfilesCounter);
 afterRootComponentCreated();
 
 onMounted(() => {

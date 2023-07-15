@@ -3,14 +3,13 @@ import {defineStore} from 'pinia';
 import type {Profile} from "@/modules/profile/stores/Profile";
 import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbReader";
 import {useProfileDbWriter} from "@/modules/profile/stores/ProfileDbWrite/ProfileDbWrite";
-import {useProfileDbUpdate} from "@/modules/profile/stores/ProfileDbUpdate/ProfileDbUpdate";
-import {useProfileDbDelete} from "@/modules/profile/stores/ProfileDbDelete/ProfileDbDelete";
 import {
     useProfileLocalStorageManager
 } from "@/modules/profile/stores/ProfileLocalStorageManagerStore/ProfileLocalStorageManager";
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
+import type {StoreActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile.type";
 
-export const useActiveProfileStore = defineStore('activeProfile', () => {
+export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {
     const profile = ref<Profile | null>(null);
 
     const {getProfileById} = useProfileDbRead();
@@ -19,29 +18,32 @@ export const useActiveProfileStore = defineStore('activeProfile', () => {
     const {setPreferredLocalStorage, readPreferredLocalStorage} = useProfileLocalStorageManager();
     const {setTheme} = useProfileThemeManager();
 
-    const setProfile = async (profileId: number): Promise<void> => {
-        if (!profileId) {
-            return;
-        }
+    const setProfile = async (profileId: number): Promise<Profile | null> => {
+        return new Promise(async (resolve, reject) => {
+            if (!profileId) {
+                reject(null);
+                return;
+            }
 
-        const newProfile = await getProfileById(profileId);
-        if (!newProfile) {
-            return;
-        }
+            const newProfile = await getProfileById(profileId);
+            if (!newProfile) {
+                return;
+            }
 
-        profile.value = newProfile;
-        setPreferredLocalStorage(newProfile.id);
-        setTheme(newProfile.theme);
+            profile.value = newProfile;
+            setPreferredLocalStorage(newProfile.id);
+            setTheme(newProfile.theme);
+            resolve(newProfile);
+        });
     }
 
-
-    const selectProfileFromReferences = async (): Promise<void> => {
+    const selectProfileFromReferences = async (): Promise<Profile | null> => {
         const profileId = await readPreferredLocalStorage();
         if (!profileId) {
-            return;
+            return null
         }
 
-        await setProfile(profileId);
+       return setProfile(profileId);
     }
     const createProfileAndSetAsActiveProfile = async (profile: Omit<Profile, 'id'>): Promise<void> => {
         await createProfile(profile);
@@ -49,8 +51,10 @@ export const useActiveProfileStore = defineStore('activeProfile', () => {
     }
 
     return {
+        profile,
         setProfile,
         selectProfileFromReferences,
+        setTheme,
         createProfileAndSetAsActiveProfile,
     }
 })

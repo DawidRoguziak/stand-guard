@@ -1,9 +1,9 @@
 import {useLangStore} from "@/langs/LangStore";
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
+import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
 
 export default async function afterRootComponentCreated(): Promise<void> {
-    const {profile} = useProfileStore();
 
+    const {profile} = useActiveProfile();
     if (profile && profile.lang) {
         useLangStore().setLang(profile.lang);
     }

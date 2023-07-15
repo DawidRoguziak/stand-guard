@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {storeToRefs} from "pinia";
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
+import {useProfileDbUpdate} from "@/modules/profile/stores/ProfileDbUpdate/ProfileDbUpdate";
+import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
 
-const profileStore = useProfileStore();
-const {profile} = storeToRefs(profileStore);
+const {updateProfile} = useProfileDbUpdate();
+const {profile} = storeToRefs(useActiveProfile());
 const isDark = ref<boolean>(profile.value?.theme === 'dark');
 
 const onChangeTheme = () => {
-  profileStore.updateProfile({
-    id:1,
+  updateProfile(1,{
     theme: isDark.value ? 'dark' : 'light'
   });
 }

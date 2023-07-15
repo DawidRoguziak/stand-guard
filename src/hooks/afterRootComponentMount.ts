@@ -1,10 +1,11 @@
-import {useProfileStore} from "@/modules/profile/stores/ProfileStore";
 import router from "@/router";
+import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
 
-export default function  afterRootComponentMount (): void {
-    const {profile, setTheme} = useProfileStore();
-    if (profile && profile.theme)  {
+export default function afterRootComponentMount(): void {
+    const {profile, setTheme} = useActiveProfile();
+    if (profile && profile.theme) {
         setTheme(profile.theme);
-        router.push({name: 'guard-home'});
+        // router.push({name: 'guard-home'});
+
     }
 }
