@@ -1,20 +1,20 @@
 export default [
     {
         path: '',
-        name: 'guard-main',
-        component: () => import(('./GuardIndex.vue')),
+        name: 'plan-main',
+        component: () => import(('./PlanIndex.vue')),
         meta: {
             requireProfile: true
         },
         children: [
             {
                 path: '',
-                name: 'guard-home',
-                component: () => import(('./views/GuardHome.vue')),
+                name: 'plan-definition',
+                component: () => import(('./views/DefinePlan.vue')),
                 meta: {
                     requireProfile: true
                 }
-            }
+            },
         ]
     }
 ]

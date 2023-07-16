@@ -7,7 +7,7 @@ export const menuRouts =  [
         {
             icon: 'edit_calendar',
             label: 'planDefinition',
-            urlName: 'guard-define-plan'
+            urlName: 'plan-definition'
         },
         {
             icon: 'manage_accounts',

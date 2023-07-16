@@ -4,6 +4,7 @@ import type {NavigationGuardNext, RouteLocationNormalized} from 'vue-router';
 import profileRouts from "@/modules/profile/profileRouts";
 import guardRouts from "@/modules/guard/guardRouts";
 import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
+import planRouts from "@/modules/plan/planRouts";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,12 @@ const router = createRouter({
             path: '/guard',
             children: [
                 ...guardRouts
+            ],
+        },
+        {
+            path: '/plan',
+            children: [
+                ...planRouts
             ],
         },
 

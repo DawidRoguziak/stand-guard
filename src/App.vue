@@ -5,12 +5,13 @@ import afterRootComponentCreated from "@/hooks/afterRootComponentCreated";
 import {onMounted} from "vue";
 import afterRootComponentMount from "@/hooks/afterRootComponentMount";
 import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
+import LayoutBase from "@/components/layout/LayoutBase/LayoutBase.vue";
 
 useProfileCounter().countProfiles();
 afterRootComponentCreated();
 
 onMounted(() => {
- afterRootComponentMount();
+  afterRootComponentMount();
 });
 </script>
 
@@ -28,7 +29,9 @@ onMounted(() => {
   <!--    </div>-->
   <!--  </header>-->
   <el-config-provider>
-    <RouterView />
+    <LayoutBase>
+      <RouterView/>
+    </LayoutBase>
     <teleport to="body">
       <GlobalLoader/>
     </teleport>
