@@ -12,7 +12,8 @@ export default [
                 name: 'guard-home',
                 component: () => import(('./views/GuardHome.vue')),
                 meta: {
-                    requireProfile: true
+                    requireProfile: true,
+                    layout: 'LayoutBase'
                 }
             }
         ]

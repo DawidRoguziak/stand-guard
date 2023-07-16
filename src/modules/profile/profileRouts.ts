@@ -12,7 +12,8 @@ export default [
                 name: 'create-first-profile',
                 component: () => import((`@/modules/profile/views/FirstProfileCreate.vue`)),
                 meta: {
-                    requireProfile: false
+                    requireProfile: false,
+                    layout: 'LayoutPublic'
                 }
             }
         ]

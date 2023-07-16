@@ -12,7 +12,8 @@ export default [
                 name: 'plan-definition',
                 component: () => import(('./views/DefinePlan.vue')),
                 meta: {
-                    requireProfile: true
+                    requireProfile: true,
+                    layout: 'LayoutBase'
                 }
             },
         ]

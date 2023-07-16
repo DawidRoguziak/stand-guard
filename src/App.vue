@@ -16,22 +16,16 @@ onMounted(() => {
 </script>
 
 <template>
-  <!--  <header>-->
-  <!--    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />-->
-
-  <!--    <div class="wrapper">-->
-  <!--      <HelloWorld msg="You did it!" />-->
-
-  <!--      <nav>-->
-  <!--        <RouterLink to="/">Home</RouterLink>-->
-  <!--        <RouterLink to="/about">About</RouterLink>-->
-  <!--      </nav>-->
-  <!--    </div>-->
-  <!--  </header>-->
   <el-config-provider>
+
     <LayoutResolver>
-      <RouterView/>
+      <RouterView v-slot="{Component}">
+        <Transition name="fade" mode="out-in">
+          <component :is="Component"/>
+        </Transition>
+      </RouterView>
     </LayoutResolver>
+
     <teleport to="body">
       <GlobalLoader/>
     </teleport>
@@ -39,4 +33,25 @@ onMounted(() => {
 </template>
 <style lang="scss">
 @import "assets/styles/main.scss";
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s ease;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+
+
 </style>

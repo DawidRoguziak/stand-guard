@@ -4,8 +4,9 @@ import useInjection from "@/composables/useInjection";
 import {MENU_KEY_OPTIONS} from "@/constants/injection-keys";
 import type {UiMenuOption} from "@/components/ui/UiMenu/UiMenuOption";
 import {useI18n} from "vue-i18n";
+import type {Layouts} from "@/components/layout/LayoutResolver.vue";
 
-let options: UiMenuOption[]  = [];
+let options: UiMenuOption[] = [];
 
 try {
   options = useInjection(MENU_KEY_OPTIONS);
