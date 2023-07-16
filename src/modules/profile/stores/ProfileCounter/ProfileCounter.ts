@@ -10,7 +10,7 @@ export const useProfileCounter = defineStore('profileCounter', (): StoreProfileC
     const isMinimumOneProfile = ref<number>(0);
     const {getProfilesCount: count} = useProfileDbRead();
 
-    const getProfilesCounter = computed((): number => {
+    const getProfilesCount = computed((): number => {
         return isMinimumOneProfile.value;
     });
 
@@ -24,6 +24,6 @@ export const useProfileCounter = defineStore('profileCounter', (): StoreProfileC
 
     return {
         countProfiles,
-        getProfilesCounter,
+        getProfilesCount,
     }
 });
