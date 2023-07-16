@@ -53,19 +53,3 @@
 //         expect(store.profile?.theme).toBe('light');
 //     });
 //
-
-//
-//     it('should delete profile', async () => {
-//         const store = useProfileStore();
-//         await store.selectLastCreatedProfile();
-//         await store.deleteProfile(1);
-//
-//         openDb().then((db: IDBDatabase) => {
-//             const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
-//             const objStore: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
-//
-//             objStore.getAll().onsuccess = function () {
-//                 expect(this.result).toHaveLength(0);
-//             }
-//         });
-//     });
