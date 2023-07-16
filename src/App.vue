@@ -5,7 +5,7 @@ import afterRootComponentCreated from "@/hooks/afterRootComponentCreated";
 import {onMounted} from "vue";
 import afterRootComponentMount from "@/hooks/afterRootComponentMount";
 import {useProfileCounter} from "@/modules/profile/stores/ProfileCounter/ProfileCounter";
-import LayoutBase from "@/components/layout/LayoutBase/LayoutBase.vue";
+import LayoutResolver from "@/components/layout/LayoutResolver.vue";
 
 useProfileCounter().countProfiles();
 afterRootComponentCreated();
@@ -29,9 +29,9 @@ onMounted(() => {
   <!--    </div>-->
   <!--  </header>-->
   <el-config-provider>
-    <LayoutBase>
+    <LayoutResolver>
       <RouterView/>
-    </LayoutBase>
+    </LayoutResolver>
     <teleport to="body">
       <GlobalLoader/>
     </teleport>
