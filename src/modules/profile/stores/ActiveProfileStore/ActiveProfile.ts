@@ -12,7 +12,6 @@ import {useLangStore} from "@/langs/LangStore";
 
 export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {
     const profile = ref<Profile | null>(null);
-
     const {getProfileById} = useProfileDbRead();
     const {setLang} = useLangStore();
     const {createProfile} = useProfileDbWriter();

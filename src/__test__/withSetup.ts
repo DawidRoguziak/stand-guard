@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
-
-export function withSetup(composable: any) {
-    let result
+export function withSetup(composable: any, appUseCall: any) {
+    let result: any
     const app = createApp({
         setup() {
                 result = composable()
@@ -9,6 +8,8 @@ export function withSetup(composable: any) {
             return () => {}
         }
     })
+
+    appUseCall(app);
     app.mount(document.createElement('div'))
     // return the result and the app instance
     // for testing provide / unmount

@@ -1,30 +1,50 @@
-import {beforeEach, describe, expect, it} from "vitest";
+import {beforeAll, describe, expect, it} from "vitest";
 import globalSetupForTest from "@/__test__/globalSetupForTest";
-import {useLangStore} from "@/langs/LangStore";
+import {LanguageStoreType, useLangStore} from "@/langs/LangStore";
 import {createPinia, setActivePinia} from "pinia";
+import {withSetup} from "@/__test__/withSetup";
+import setupI18n from "@/plugins/i18n";
 
 globalSetupForTest();
 
 describe('LangStore', () => {
-    beforeEach(() => {
+    beforeAll(() => {
         setActivePinia(createPinia());
     });
 
     it('default state', () => {
-        const lang = useLangStore();
-        expect(lang.langList).toEqual(['en', 'pl']);
-        expect(lang.getLang).toEqual('en');
+        const [result] =
+            withSetup(() => useLangStore(),
+                (app: any) => {
+                    setupI18n(app);
+                });
+
+        const langStore = result as LanguageStoreType;
+        expect(result.langList).toEqual(['en', 'pl']);
+        expect(result.getLang).toEqual('en');
     });
 
     it('setLang', () => {
-        const lang = useLangStore();
-        lang.setLang('pl');
-        expect(lang.getLang).toEqual('pl');
+        const [result] =
+            withSetup(() => useLangStore(),
+                (app: any) => {
+                    setupI18n(app);
+                });
+
+        const langStore = result as LanguageStoreType;
+        langStore.setLang('pl');
+        expect(langStore.getLang).toEqual('pl');
     });
 
     it('getLang', () => {
-        const lang = useLangStore();
-        lang.setLang('pl');
-        expect(lang.getLang).toEqual('pl');
+        const [result] =
+            withSetup(() => useLangStore(),
+                (app: any) => {
+                    setupI18n(app);
+                });
+
+        const langStore = result as LanguageStoreType;
+        langStore.setLang('pl');
+        expect(langStore.getLang).toEqual('pl');
     });
 });

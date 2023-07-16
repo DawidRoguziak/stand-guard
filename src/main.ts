@@ -25,7 +25,6 @@ beforeRouterInit().then(() => {
 
     setupVeeValidate();
     setupI18n(app);
-    setupYupLang();
     setupYupMethods();
 
     app.mount('#app');

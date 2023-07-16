@@ -1,10 +1,10 @@
 import {setLocale} from "yup";
-import {i18nInstance} from "@/plugins/i18n";
+import type {ComposerTranslation} from "vue-i18n";
 
-export function setupYupLang() {
+export function setupYupLang(t: ComposerTranslation) {
     setLocale({
         mixed: {
-            required: i18nInstance.global.t('uiFields.required'),
+            required: t('uiFields.required'),
         },
     });
 }
