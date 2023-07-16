@@ -41,12 +41,7 @@
 //         expect(store.isMinimumOneProfile).toBeTruthy();
 //     });
 //
-//     it('should get profile list ', async () => {
-//         const store = useProfileStore();
-//         const profiles = await store.getAllProfiles();
-//
-//         expect(profiles.length).toBeGreaterThanOrEqual(1);
-//     });
+
 //
 //     it('should set theme from profile', async () => {
 //         const store = useProfileStore();

@@ -1,7 +1,7 @@
 import {ref} from 'vue';
 import {defineStore} from 'pinia';
 import type {Profile} from "@/modules/profile/stores/Profile";
-import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbReader";
+import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbRead";
 import {useProfileDbWriter} from "@/modules/profile/stores/ProfileDbWrite/ProfileDbWrite";
 import {
     useProfileLocalStorageManager

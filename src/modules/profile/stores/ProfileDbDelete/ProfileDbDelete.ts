@@ -16,8 +16,20 @@ export const useProfileDbDelete = defineStore('profileDbDelete', (): StoreProfil
         });
     }
 
+    const deleteAllProfiles = (): Promise<void> => {
+        return new Promise(async (resolve, reject) => {
+            const db: IDBDatabase = await ProfileDb();
+            const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
+            const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
+            const request: IDBRequest = store.clear();
+            request.onerror = () => reject(request.error);
+            request.onsuccess = () => resolve();
+        });
+    }
+
 
     return {
-        deleteProfile
+        deleteProfile,
+        deleteAllProfiles
     }
 });

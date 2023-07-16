@@ -17,7 +17,7 @@ export const useProfileDbRead = defineStore('profileDbRead', (): StoreProfileDbR
         });
     }
 
-    const getProfilesCounter  = (): Promise<number> => {
+    const getProfilesCount  = (): Promise<number> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await ProfileDb();
             const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
@@ -45,7 +45,7 @@ export const useProfileDbRead = defineStore('profileDbRead', (): StoreProfileDbR
         });
     }
 
-    const selectLastCreatedProfile = (): Promise<Profile | null> => {
+    const getLastCreatedProfile = (): Promise<Profile | null> => {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await ProfileDb();
             const transaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
@@ -66,7 +66,7 @@ export const useProfileDbRead = defineStore('profileDbRead', (): StoreProfileDbR
     return {
         getAllProfiles,
         getProfileById,
-        getProfilesCounter,
-        selectLastCreatedProfile
+        getProfilesCount,
+        getLastCreatedProfile
     }
 });

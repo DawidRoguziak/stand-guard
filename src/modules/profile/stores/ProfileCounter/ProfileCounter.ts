@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
 import {computed, ref} from "vue";
-import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbReader";
+import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbRead";
 import type {
     StoreProfileCounter
 } from "@/modules/profile/stores/ProfileCounter/ProfileCounter.type";
@@ -8,7 +8,7 @@ import type {
 
 export const useProfileCounter = defineStore('profileCounter', (): StoreProfileCounter => {
     const isMinimumOneProfile = ref<number>(0);
-    const {getProfilesCounter: count} = useProfileDbRead();
+    const {getProfilesCount: count} = useProfileDbRead();
 
     const getProfilesCounter = computed((): number => {
         return isMinimumOneProfile.value;
