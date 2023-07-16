@@ -9,10 +9,11 @@ export const useProfileDbUpdate = defineStore('profileDbUpdate', (): StoreProfil
             const db: IDBDatabase = await ProfileDb();
             const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readwrite');
             const store: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
-            const request: IDBRequest = store.put(updateProfileData);
+            const request: IDBRequest = store.put({id, ...updateProfileData});
             request.onerror = () => reject(request.error);
             request.onsuccess = () => {
                 if (request.result) {
+
                     resolve();
                 }else {
                     reject(null);

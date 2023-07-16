@@ -1,29 +1,6 @@
-// import {beforeEach, describe, expect, it} from "vitest";
-// import {DB_STORE_NAME_PROFILE, useProfileStore} from "./ProfileStore";
-// import {setActivePinia, createPinia} from "pinia";
-// import "fake-indexeddb/auto";
-// import {APP_DB_NAME} from "@/constants/constants";
-//
-//
-// const openDb = (): Promise<IDBDatabase> => {
-//     return new Promise((resolve, reject) => {
-//         const request = indexedDB.open(APP_DB_NAME, 1);
-//         request.onerror = () => reject(request.error);
-//         request.onsuccess = () => resolve(request.result);
-//         request.onupgradeneeded = event => {
-//             const db = (event.target as IDBOpenDBRequest).result;
-//             if (!db.objectStoreNames.contains(DB_STORE_NAME_PROFILE)) {
-//                 db.createObjectStore('profile', {keyPath: 'id', autoIncrement: true});
-//             }
-//         };
-//     });
-// }
-//
-//
-// describe('ProfileStore', () => {
-//     beforeEach(() => {
-//         setActivePinia(createPinia());
-//     });
+
+
+
 //
 //     it('should have default state', async () => {
 //         const store = useProfileStore();
@@ -31,25 +8,7 @@
 //         expect(store.isMinimumOneProfile).toBeFalsy();
 //     });
 //
-//     it('should create profile', async () => {
-//         const store = useProfileStore();
-//
-//         await store.createProfile({
-//             name: 'test',
-//             username: 'test',
-//             lang: 'en',
-//             theme: 'light'
-//         });
-//
-//         openDb().then((db: IDBDatabase) => {
-//             const transaction: IDBTransaction = db.transaction(DB_STORE_NAME_PROFILE, 'readonly');
-//             const objStore: IDBObjectStore = transaction.objectStore(DB_STORE_NAME_PROFILE);
-//
-//             objStore.getAll().onsuccess = function () {
-//                 expect(this.result).toHaveLength(1);
-//             }
-//         });
-//     });
+
 //
 //     it('selectLastCreatedProfile should select profile', async () => {
 //         const store = useProfileStore();
@@ -99,7 +58,7 @@
 //         expect(store.profile?.theme).toBe('light');
 //     });
 //
-//     // TODO test for localstorage data
+
 //
 //     it('should delete profile', async () => {
 //         const store = useProfileStore();
@@ -115,4 +74,3 @@
 //             }
 //         });
 //     });
-// });
