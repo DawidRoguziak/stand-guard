@@ -8,8 +8,25 @@ export default class PlanGenerator {
     }
 
     public generatePlan(): any {
-        console.log('aaa',this._planSettings);
+        const result: any = [];
 
-        return this._planSettings;
+        const timeH = this._planSettings.timeRange;
+        for (let i = 0; i < timeH; i++) {
+
+            result.push({
+                time: this._planSettings.sitTime,
+                exercise: null,
+                isSitTime: true
+            });
+
+            result.push({
+                time: this._planSettings.exerciseTime,
+                exercise: this._planSettings.exercise,
+                isSitTime: false
+            });
+
+        }
+
+        return result;
     }
 }
