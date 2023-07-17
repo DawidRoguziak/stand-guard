@@ -1,4 +1,5 @@
 import type {PlanSettings} from "@/modules/plan/types/PlanSettings";
+import type {PlanItem} from "@/modules/plan/types/PlanItem";
 
 export default class PlanGenerator {
     private readonly _planSettings: PlanSettings;
@@ -7,7 +8,7 @@ export default class PlanGenerator {
         this._planSettings = planSettings;
     }
 
-    public generatePlan(): any {
+    public generatePlan(): PlanItem[] {
         const result: any = [];
 
         const timeH = this._planSettings.timeRange;
