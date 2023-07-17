@@ -1,0 +1,1 @@
+export type TimeHType = {key: number, value: number};

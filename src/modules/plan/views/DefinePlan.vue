@@ -3,6 +3,7 @@ import useInjection from "@/composables/useInjection";
 import {PAGE_HEIGHT_CLASS} from "@/constants/injection-keys";
 import {useI18n} from "vue-i18n";
 import type {Ref} from "vue";
+import FormCreatePlan from "@/modules/plan/forms/FormCreatePlan.vue";
 
 let pageHeightClass: Ref<string>;
 try {
@@ -15,15 +16,20 @@ try {
 const {t} = useI18n();
 </script>
 <template>
-  <div class="flex justify-center items-center w-full h-full mt-[-20px]">
-    <div class="flex items-center flex-col">
-      <h3 class="mb-5">{{ t('noEventsMessage') }}</h3>
-      <UiButton>
-        <span class="material-symbols-outlined mr-2">
-          add
-        </span>
-        {{ t('addOne') }}
-      </UiButton>
+  <div>
+    <div>
+      <FormCreatePlan/>
+    </div>
+    <div class="flex justify-center items-center w-full h-full mt-[-20px]">
+      <div class="flex items-center flex-col">
+        <h3 class="mb-5">{{ t('noEventsMessage') }}</h3>
+        <UiButton>
+          <span class="material-symbols-outlined mr-2">
+            add
+          </span>
+          {{ t('addOne') }}
+        </UiButton>
+      </div>
     </div>
   </div>
 </template>

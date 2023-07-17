@@ -1,0 +1,52 @@
+<script setup lang="ts">
+import {Form as VeeForm} from 'vee-validate';
+import type {TimeHType} from "@/modules/plan/types/TimeHType";
+import Exercise from "@/modules/plan/classes/Exercise/Exercise";
+
+const onSubmit = (data: any) => {
+  console.log('submit', data);
+}
+
+const exercise = new Exercise();
+const TIME_H: TimeHType[] = [
+  {key: 1, value: 1},
+  {key: 2, value: 2},
+  {key: 3, value: 3},
+  {key: 4, value: 4},
+  {key: 5, value: 5},
+  {key: 6, value: 6},
+  {key: 7, value: 7},
+  {key: 8, value: 8},
+  {key: 9, value: 9},
+  {key: 10, value: 10},
+  {key: 11, value: 11},
+  {key: 12, value: 12},
+  {key: 13, value: 13},
+  {key: 14, value: 14},
+  {key: 15, value: 15},
+  {key: 16, value: 16}
+];
+
+</script>
+
+<template>
+  <div>
+    <VeeForm class="ui-form" @submit="onSubmit">
+
+      <UiSelect name="timeRange" placeholder="Time range" :options="TIME_H"/>
+
+      <UiSelect name="exercise" placeholder="Default action" :options="exercise.exerciseTypes">
+        <template #default="{options}">
+          <el-option v-for="opt in options" :value="opt.key" :label="opt.label">
+            <span>{{ opt?.label }}</span>
+          </el-option>
+        </template>
+      </UiSelect>
+
+      <UiButton native-type="submit">
+        Submit
+      </UiButton>
+
+    </VeeForm>
+  </div>
+</template>
