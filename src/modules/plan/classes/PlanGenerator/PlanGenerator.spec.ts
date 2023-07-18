@@ -1,18 +1,63 @@
 import {expect, it, describe} from "vitest";
 import PlanGenerator from "@/modules/plan/classes/PlanGenerator/PlanGenerator";
 
+const examplePlanSettings ={
+    timeRange: 2,
+    exerciseTime: 60,
+    sitTime: 30,
+    exercise: {
+        key: 'pushups',
+        label: 'Push-ups',
+        unit: 'counter'
+    },
+};
 describe('PlanGenerator', () => {
-    it('', () => {
-        const planGenerator = new PlanGenerator({
-            timeRange: 2,
-            exerciseTime: 1,
-            sitTime: 1,
-            exercise: {
-                key: 'pushups',
-                label: 'Push-ups',
-                unit: 'counter'
-            },
-        });
-        expect(true).toBe(true);
+    it('should generate correct number of events', () => {
+        const planGenerator = new PlanGenerator(examplePlanSettings);
+        expect(planGenerator.generatePlan()).length(examplePlanSettings.timeRange * 2);
+    });
+
+    it('should exercise event time should have exerciseTime', () => {
+        const planGenerator = new PlanGenerator(examplePlanSettings);
+        const plan = planGenerator.generatePlan();
+
+        for (let i = 0; i < plan.length; i++) {
+            if (!plan[i].isSitTime) {
+                expect(plan[i].time).equal(examplePlanSettings.exerciseTime);
+            }
+        }
+    });
+
+    it('should sit event time should have exerciseTime', () => {
+        const planGenerator = new PlanGenerator(examplePlanSettings);
+        const plan = planGenerator.generatePlan();
+
+        for (let i = 0; i < plan.length; i++) {
+            if (plan[i].isSitTime) {
+                expect(plan[i].time).equal(examplePlanSettings.sitTime);
+            }
+        }
+    });
+
+    it(' exercise event should have any exercise', () => {
+        const planGenerator = new PlanGenerator(examplePlanSettings);
+        const plan = planGenerator.generatePlan();
+
+        for (let i = 0; i < plan.length; i++) {
+            if (!plan[i].isSitTime) {
+                expect(plan[i].exercise.key).equal(examplePlanSettings.exercise.key);
+            }
+        }
+    });
+
+    it(' sit event should not have any exercise', () => {
+        const planGenerator = new PlanGenerator(examplePlanSettings);
+        const plan = planGenerator.generatePlan();
+
+        for (let i = 0; i < plan.length; i++) {
+            if (plan[i].isSitTime) {
+                expect(plan[i].exercise).equal(null);
+            }
+        }
     });
 });
