@@ -1,8 +1,9 @@
 import {expect, it, describe} from "vitest";
 import PlanGenerator from "@/modules/plan/classes/PlanGenerator/PlanGenerator";
+import type {PlanSettings} from "@/modules/plan/types/PlanSettings";
 
-const examplePlanSettings ={
-    timeRange: 2,
+const examplePlanSettings: PlanSettings ={
+    cycles: 2,
     exerciseTime: 60,
     sitTime: 30,
     exercise: {
@@ -14,7 +15,7 @@ const examplePlanSettings ={
 describe('PlanGenerator', () => {
     it('should generate correct number of events', () => {
         const planGenerator = new PlanGenerator(examplePlanSettings);
-        expect(planGenerator.generatePlan()).length(examplePlanSettings.timeRange * 2);
+        expect(planGenerator.generatePlan()).length(examplePlanSettings.cycles * 2);
     });
 
     it('should exercise event time should have exerciseTime', () => {
@@ -45,7 +46,7 @@ describe('PlanGenerator', () => {
 
         for (let i = 0; i < plan.length; i++) {
             if (!plan[i].isSitTime) {
-                expect(plan[i].exercise.key).equal(examplePlanSettings.exercise.key);
+                expect(plan[i].exercise?.key).equal(examplePlanSettings.exercise.key);
             }
         }
     });

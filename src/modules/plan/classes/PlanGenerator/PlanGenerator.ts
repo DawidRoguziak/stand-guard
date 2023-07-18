@@ -9,9 +9,9 @@ export default class PlanGenerator {
     }
 
     public generatePlan(): PlanItem[] {
-        const result: any = [];
+        const result: PlanItem[] = [];
 
-        const timeH = this._planSettings.timeRange;
+        const timeH = this._planSettings.cycles;
         for (let i = 0; i < timeH; i++) {
 
             result.push({

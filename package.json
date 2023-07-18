@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.2.1",
+    "dayjs": "^1.11.9",
     "element-plus": "^2.3.8",
     "pinia": "^2.1.4",
     "uuid": "^9.0.0",
