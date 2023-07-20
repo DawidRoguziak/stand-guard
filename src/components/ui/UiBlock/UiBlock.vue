@@ -15,7 +15,7 @@
 }
 
 .ui-block {
-  --ui-block-bg: #fff;
+  --ui-block-bg: #f4f4f5;
   --ui-block-box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
 }
 

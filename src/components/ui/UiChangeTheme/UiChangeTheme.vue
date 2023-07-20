@@ -3,14 +3,18 @@ import {ref} from "vue";
 import {storeToRefs} from "pinia";
 import {useProfileDbUpdate} from "@/modules/profile/stores/ProfileDbUpdate/ProfileDbUpdate";
 import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
+import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
 
 const {updateProfile} = useProfileDbUpdate();
 const {profile} = storeToRefs(useActiveProfile());
+const {setTheme} = useProfileThemeManager();
 const isDark = ref<boolean>(profile.value?.theme === 'dark');
 
 const onChangeTheme = () => {
   updateProfile(1,{
     theme: isDark.value ? 'dark' : 'light'
+  }).then(() => {
+    setTheme(isDark.value ? 'dark' : 'light');
   });
 }
 

@@ -23,7 +23,7 @@ const onSubmit = (data: any) => {
   generated.value = planGenerator.generatePlan();
 
   planCalcValues.updatePlanSettings({cycles: ps.cycles, sitTime: ps.sitTime, exerciseTime: ps.exerciseTime});
-  const calculated  = planCalcValues.calcPlanMetaData();
+  const calculated = planCalcValues.calcPlanMetaData();
   planMetaData.estimatedTime = calculated.estimatedTime;
   planMetaData.totalExercises = calculated.totalExercises;
   planMetaData.totalSitsTime = calculated.totalSitsTime;
@@ -39,7 +39,7 @@ const onSubmit = (data: any) => {
 
       <UiSelect name="cycles" placeholder="Number of cycles" :options="TIME_H"/>
 
-      <UiNumberInput name="sitTime" placeholder="Sit time" />
+      <UiNumberInput name="sitTime" placeholder="Sit time"/>
 
       <UiNumberInput name="exerciseTime" placeholder="Exercise time"/>
 
@@ -51,11 +51,11 @@ const onSubmit = (data: any) => {
         </template>
       </UiSelect>
 
-      <div>
-        {{ planMetaData?.estimatedTime }}
-        {{ planMetaData?.totalSitsTime }}
-        {{ planMetaData?.totalExercises }}
-      </div>
+      <UiBlock class="flex gap-5 flex-wrap" style="--ui-block-box-shadow: none;">
+        <div>Total time: <span class="text-sm">{{ planMetaData?.estimatedTime }}(h)</span></div>
+        <div>Total sitting time: <span class="text-sm">{{ planMetaData?.totalSitsTime }}(h)</span></div>
+        <div>Total exercises time: <span class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
+      </UiBlock>
 
       <UiButton native-type="submit">
         Submit
