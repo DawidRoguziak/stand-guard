@@ -34,7 +34,7 @@ const onSubmit = (data: any) => {
 </script>
 
 <template>
-  <div>
+  <UiBlock class="form-plan">
     <VeeForm ref="formRef" class="ui-form" @submit="onSubmit">
 
       <UiSelect name="cycles" placeholder="Number of cycles" :options="TIME_H"/>
@@ -45,16 +45,21 @@ const onSubmit = (data: any) => {
 
       <UiSelect name="exercise" placeholder="Default action" :options="exercise.exerciseTypes">
         <template #default="{options}">
-          <el-option v-for="opt in options" :value="opt.key" :label="opt.label">
+          <el-option v-for="opt in options" :value="opt" :label="opt.label">
             <span>{{ opt?.label }}</span>
           </el-option>
         </template>
       </UiSelect>
 
-      <UiBlock class="flex gap-5 flex-wrap" style="--ui-block-box-shadow: none;">
-        <div>Total time: <span class="text-sm">{{ planMetaData?.estimatedTime }}(h)</span></div>
-        <div>Total sitting time: <span class="text-sm">{{ planMetaData?.totalSitsTime }}(h)</span></div>
-        <div>Total exercises time: <span class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
+      <UiBlock v-if="planMetaData && planMetaData.estimatedTime" class="flex gap-5 flex-wrap form-plan__meta-block">
+        <div v-if="planMetaData.estimatedTime">Total time: <span class="text-sm">{{
+            planMetaData?.estimatedTime
+          }}(h)</span></div>
+        <div v-if="planMetaData.totalSitsTime">Total sitting time: <span class="text-sm">{{
+            planMetaData?.totalSitsTime
+          }}(h)</span></div>
+        <div v-if="planMetaData.totalExercises">Total exercises time: <span
+            class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
       </UiBlock>
 
       <UiButton native-type="submit">
@@ -65,5 +70,13 @@ const onSubmit = (data: any) => {
     <div>
       <pre>{{ generated }}</pre>
     </div>
-  </div>
+  </UiBlock>
 </template>
+
+<style lang="scss">
+:deep(.form-plan) {
+  .form-plan__meta-block {
+    --ui-block-box-shadow: none;
+  }
+}
+</style>

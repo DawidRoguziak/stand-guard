@@ -5,17 +5,20 @@ export default class Exercise {
         {
             key: 'pushups',
             label: 'Push-ups',
-            unit: 'counter'
+            unit: 'counter',
+            value: null
         },
         {
             key: 'squats',
             label: 'Squats',
-            unit: 'counter'
+            unit: 'counter',
+            value: null
         },
         {
             key: 'standing',
             label: 'Standing',
-            unit: 'time'
+            unit: 'time',
+            value: null
         }
     ];
 
