@@ -10,6 +10,8 @@ import PlanCalcValues from "@/modules/plan/classes/PlanComputedValues/PlanCalcVa
 import type CalcPlanMetaData from "@/modules/plan/classes/PlanComputedValues/CalcPlanMetaData";
 import type {PlanMetaData} from "@/modules/plan/types/PlanMetaData";
 import {number, object} from "yup";
+import { ElMessage } from 'element-plus'
+
 
 const schema = object({
   cycles: number().required(),
@@ -20,6 +22,7 @@ const schema = object({
 const exercise = new Exercise();
 
 const generated = ref<any>();
+const valid = ref<boolean>(false);
 const planCalcValues = reactive<CalcPlanMetaData>(new PlanCalcValues({cycles: 0, sitTime: 0, exerciseTime: 0}));
 const planMetaData = reactive<PlanMetaData>({estimatedTime: '', totalSitsTime: '', totalExercises: ''});
 const onSubmit = (data: any) => {
@@ -28,10 +31,24 @@ const onSubmit = (data: any) => {
   generated.value = planGenerator.generatePlan();
 
   planCalcValues.updatePlanSettings({cycles: ps.cycles, sitTime: ps.sitTime, exerciseTime: ps.exerciseTime});
+
   const calculated = planCalcValues.calcPlanMetaData();
-  planMetaData.estimatedTime = calculated.estimatedTime;
-  planMetaData.totalExercises = calculated.totalExercises;
-  planMetaData.totalSitsTime = calculated.totalSitsTime;
+
+
+  if (planCalcValues.totalTimeInMinutes <= planCalcValues.MAX_TIME_FOR_PLAN) {
+    // save plan
+    planMetaData.estimatedTime = calculated.estimatedTime;
+    planMetaData.totalExercises = calculated.totalExercises;
+    planMetaData.totalSitsTime = calculated.totalSitsTime;
+    valid.value = true;
+  } else {
+    // error
+    valid.value = false;
+    ElMessage({
+      message: 'Plan cant be generated, total time is more than 24h',
+      type: 'error',
+    })
+  }
 }
 
 </script>
@@ -54,7 +71,7 @@ const onSubmit = (data: any) => {
         </template>
       </UiSelect>
 
-      <UiBlock v-if="planMetaData && planMetaData.estimatedTime" class="flex gap-5 flex-wrap form-plan__meta-block">
+      <UiBlock v-if="valid" class="flex gap-5 flex-wrap form-plan__meta-block">
         <div v-if="planMetaData.estimatedTime">Total time: <span class="text-sm">{{
             planMetaData?.estimatedTime
           }}(h)</span></div>
@@ -65,7 +82,7 @@ const onSubmit = (data: any) => {
             class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
       </UiBlock>
 
-      <UiButton native-type="submit">
+      <UiButton class="mt-4" native-type="submit" is-block>
         Submit
       </UiButton>
 

@@ -7,6 +7,9 @@ export default class PlanCalcValues implements CalcPlanMetaData {
     private _sitTime: number;
     private _cycles: number;
 
+    totalTimeInMinutes: number = 0;
+    MAX_TIME_FOR_PLAN: number = 24 * 60;// plan can't be longer than 24 hours
+
 
     constructor({cycles, sitTime, exerciseTime}: { cycles: number, sitTime: number, exerciseTime: number }) {
         this._exerciseTime = exerciseTime;
@@ -15,6 +18,8 @@ export default class PlanCalcValues implements CalcPlanMetaData {
     }
 
     calcPlanMetaData = (): PlanMetaData => {
+        this._calcTotalTimeInMinutes();
+
         return {
             estimatedTime: this._calcEstimatedTime(),
             totalSitsTime: this._calcTotalSits(),
@@ -32,8 +37,12 @@ export default class PlanCalcValues implements CalcPlanMetaData {
         this._cycles = cycles;
     }
 
+    private _calcTotalTimeInMinutes = () => {
+        this.totalTimeInMinutes = (this._exerciseTime + this._sitTime) * this._cycles;
+    }
+
     private _calcEstimatedTime = (): string => {
-        return calcTimeFromMinutes((this._exerciseTime + this._sitTime) * this._cycles);
+        return calcTimeFromMinutes(this.totalTimeInMinutes);
     }
 
     private _calcTotalSits = (): string => {
