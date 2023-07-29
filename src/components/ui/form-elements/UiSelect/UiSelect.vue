@@ -1,15 +1,10 @@
 <script setup lang="ts">
 import type {UiSelectProps} from "@/components/ui/form-elements/UiSelect/UiSelectProps";
-import {onUnmounted, ref} from "vue";
+import {ref} from "vue";
 import {ErrorMessage, Field} from "vee-validate";
 
 const {placeholder, name, options, teleported = true} = defineProps<UiSelectProps>();
 const internalValue = ref<any>()
-
-onUnmounted(() => {
-  console.log('unmounted')
-
-})
 
 </script>
 
