@@ -9,6 +9,7 @@ import {
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
 import type {StoreActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile.type";
 import {useLangStore} from "@/langs/LangStore";
+export const DB_STORE_NAME_PROFILE = 'profiles';
 
 export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {
     const profile = ref<Profile | null>(null);
