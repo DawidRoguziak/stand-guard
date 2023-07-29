@@ -8,7 +8,7 @@ export default [
         },
         children: [
             {
-                path: '',
+                path: 'home',
                 name: 'guard-home',
                 component: () => import(('./views/GuardHome.vue')),
                 meta: {

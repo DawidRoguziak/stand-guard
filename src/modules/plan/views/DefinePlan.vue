@@ -16,6 +16,7 @@ try {
 const {t} = useI18n();
 </script>
 <template>
+  <div>
     <div v-if="false" class="flex justify-center items-center w-full h-full mt-[-20px]">
       <div  class="flex items-center flex-col">
         <h3 class="mb-5">{{ t('noEventsMessage') }}</h3>
@@ -27,7 +28,6 @@ const {t} = useI18n();
         </UiButton>
       </div>
     </div>
-  <div>
     <div>
       <FormCreatePlan />
     </div>

@@ -8,7 +8,7 @@ export default [
         },
         children: [
             {
-                path: '',
+                path: 'create',
                 name: 'plan-definition',
                 component: () => import(('./views/DefinePlan.vue')),
                 meta: {

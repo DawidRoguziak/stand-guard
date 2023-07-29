@@ -6,7 +6,6 @@ import type {PlanSettings} from "@/modules/plan/types/PlanSettings";
 import {TIME_H} from "@/modules/plan/types/TimeHType";
 import UiNumberInput from "@/components/ui/form-elements/UiNumberInput/UiNumberInput.vue";
 import {reactive, ref} from "vue";
-import type {Ref} from "vue";
 import PlanCalcValues from "@/modules/plan/classes/PlanComputedValues/PlanCalcValues";
 import type CalcPlanMetaData from "@/modules/plan/classes/PlanComputedValues/CalcPlanMetaData";
 import type {PlanMetaData} from "@/modules/plan/types/PlanMetaData";
@@ -27,15 +26,13 @@ const onSubmit = (data: any) => {
   planMetaData.estimatedTime = calculated.estimatedTime;
   planMetaData.totalExercises = calculated.totalExercises;
   planMetaData.totalSitsTime = calculated.totalSitsTime;
-
 }
-
 
 </script>
 
 <template>
   <UiBlock class="form-plan">
-    <VeeForm ref="formRef" class="ui-form" @submit="onSubmit">
+    <VeeForm ref="formRef" class="ui-form" @submit="onSubmit" >
 
       <UiSelect name="cycles" placeholder="Number of cycles" :options="TIME_H"/>
 
