@@ -1,21 +1,20 @@
 import {ref} from 'vue';
 import {defineStore} from 'pinia';
 import type {Profile} from "@/modules/profile/stores/Profile";
-import {useProfileDbRead} from "@/modules/profile/stores/ProfileDbRead/ProfileDbRead";
-import {useProfileDbWriter} from "@/modules/profile/stores/ProfileDbWrite/ProfileDbWrite";
 import {
     useProfileLocalStorageManager
 } from "@/modules/profile/stores/ProfileLocalStorageManagerStore/ProfileLocalStorageManager";
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
 import type {StoreActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile.type";
 import {useLangStore} from "@/langs/LangStore";
+import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager";
 export const DB_STORE_NAME_PROFILE = 'profiles';
 
 export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {
     const profile = ref<Profile | null>(null);
-    const {getProfileById} = useProfileDbRead();
+    const {writeDb, readDb} = useProfileIndexDb();
+
     const {setLang} = useLangStore();
-    const {createProfile} = useProfileDbWriter();
 
     const {setPreferredLocalStorage, readPreferredLocalStorage} = useProfileLocalStorageManager();
     const {setTheme} = useProfileThemeManager();
@@ -27,7 +26,7 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
                 return;
             }
 
-            const newProfile = await getProfileById(profileId).catch(() => {
+            const newProfile = await readDb.getById(profileId).catch(() => {
                 reject(null);
             });
 
@@ -53,7 +52,7 @@ export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProf
     }
     const createProfileAndSetAsActiveProfile = async (profile: Omit<Profile, 'id'>): Promise<void> => {
         return new Promise(async (resolve, reject) => {
-            const profileId = await createProfile(profile).catch(() => {
+            const profileId = await writeDb.write(profile).catch(() => {
                 reject();
             });
 

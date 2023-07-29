@@ -1,23 +1,22 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {storeToRefs} from "pinia";
-import {useProfileDbUpdate} from "@/modules/profile/stores/ProfileDbUpdate/ProfileDbUpdate";
 import {useActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile";
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
+import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager";
 
-const {updateProfile} = useProfileDbUpdate();
+const {updateDb} = useProfileIndexDb();
 const {profile} = storeToRefs(useActiveProfile());
 const {setTheme} = useProfileThemeManager();
 const isDark = ref<boolean>(profile.value?.theme === 'dark');
 
 const onChangeTheme = () => {
-  updateProfile(1,{
+  updateDb.update(1, {
     theme: isDark.value ? 'dark' : 'light'
   }).then(() => {
     setTheme(isDark.value ? 'dark' : 'light');
   });
 }
-
 
 </script>
 <template>

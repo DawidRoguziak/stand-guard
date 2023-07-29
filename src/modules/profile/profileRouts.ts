@@ -1,6 +1,6 @@
 export default [
     {
-        path: '',
+        path: '/profile',
         name: 'profile-main',
         component: () => import((`@/modules/profile/ProfileIndex.vue`)),
         meta: {

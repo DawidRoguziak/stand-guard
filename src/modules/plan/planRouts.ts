@@ -1,6 +1,6 @@
 export default [
     {
-        path: '',
+        path: '/plan',
         name: 'plan-main',
         component: () => import(('./PlanIndex.vue')),
         meta: {

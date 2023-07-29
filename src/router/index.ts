@@ -12,31 +12,25 @@ const router = createRouter({
         {
             path: '/',
             name: 'entry-point-of-app',
-            component: () => import((`../components/views/ViewEntryPointOfApp.vue`)),
-        },
-        {
-            path: '/profile',
-            children: [
-                ...profileRouts
-            ],
-            meta: {
-                requireProfile: true
-            }
-        },
-        {
-            path: '/guard',
-            children: [
-                ...guardRouts
-            ],
-        },
-        {
-            path: '/plan',
-            children: [
-                ...planRouts
-            ],
+            component: () => import(`../components/views/ViewEntryPointOfApp.vue`),
         },
 
-        {path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import((`../components/views/view404/View404.vue`))},
+        // @ts-ignore
+        ...profileRouts,
+        // @ts-ignore
+        ...guardRouts,
+        // @ts-ignore
+        ...planRouts,
+
+        // @ts-ignore
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'NotFound',
+            component: () => import(`../components/views/view404/View404.vue`),
+            meta: {
+                requireProfile: false,
+            }
+        },
     ]
 });
 

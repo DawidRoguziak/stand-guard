@@ -9,7 +9,8 @@ const examplePlanSettings: PlanSettings ={
     exercise: {
         key: 'pushups',
         label: 'Push-ups',
-        unit: 'counter'
+        unit: 'counter',
+        value: 2,
     },
 };
 describe('PlanGenerator', () => {

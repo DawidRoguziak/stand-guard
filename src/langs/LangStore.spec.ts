@@ -1,6 +1,7 @@
 import {beforeAll, describe, expect, it} from "vitest";
 import globalSetupForTest from "@/__test__/globalSetupForTest";
-import {LanguageStoreType, useLangStore} from "@/langs/LangStore";
+import {useLangStore} from "@/langs/LangStore";
+import type {LanguageStoreType} from "@/langs/LangStore";
 import {createPinia, setActivePinia} from "pinia";
 import {withSetup} from "@/__test__/withSetup";
 import setupI18n from "@/plugins/i18n";

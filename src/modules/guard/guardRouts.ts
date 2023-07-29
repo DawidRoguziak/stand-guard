@@ -1,6 +1,6 @@
 export default [
     {
-        path: '',
+        path: '/guard',
         name: 'guard-main',
         component: () => import(('./GuardIndex.vue')),
         meta: {
