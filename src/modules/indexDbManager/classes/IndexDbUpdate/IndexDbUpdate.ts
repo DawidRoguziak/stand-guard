@@ -2,7 +2,7 @@ import type IDBDataBaseDefinition from "@/modules/indexDbManager/types/IDBDataBa
 import type {IDBDataBaseFactory} from "@/modules/indexDbManager/types/IDBDataBaseFunction.type";
 import type IndexDbUpdateType from "@/modules/indexDbManager/classes/IndexDbUpdate/IndexDbUpdate.type";
 
-export default class IndexDbWrite<DataType, Key extends keyof DataType> implements IDBDataBaseDefinition, IndexDbUpdateType<DataType, Key> {
+export default class IndexDbUpdate<DataType, Key extends keyof DataType> implements IDBDataBaseDefinition, IndexDbUpdateType<DataType, Key> {
     storeName: string;
     dbFactory: IDBDataBaseFactory;
 
