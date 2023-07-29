@@ -1,6 +1,6 @@
-import type {Ref, UnwrapRef} from "vue";
-import type {Profile} from "@/modules/profile/stores/Profile";
-import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
+import type {Ref} from "vue";
+import type {Profile} from "@/modules/profile/types/Profile";
+import type {ThemeTypes} from "@/modules/profile/types/ThemeTypes";
 
 export type StoreActiveProfile = {
     profile: Ref<Profile | null>;

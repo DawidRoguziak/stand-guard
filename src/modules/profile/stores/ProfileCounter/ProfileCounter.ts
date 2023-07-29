@@ -3,7 +3,7 @@ import {computed, ref} from "vue";
 import type {
     StoreProfileCounter
 } from "@/modules/profile/stores/ProfileCounter/ProfileCounter.type";
-import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager";
+import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager/ProfileIndexDbManager";
 
 
 export const useProfileCounter = defineStore('profileCounter', (): StoreProfileCounter => {

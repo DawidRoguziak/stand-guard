@@ -1,13 +1,13 @@
 import {ref} from 'vue';
 import {defineStore} from 'pinia';
-import type {Profile} from "@/modules/profile/stores/Profile";
+import type {Profile} from "@/modules/profile/types/Profile";
 import {
     useProfileLocalStorageManager
 } from "@/modules/profile/stores/ProfileLocalStorageManagerStore/ProfileLocalStorageManager";
 import {useProfileThemeManager} from "@/modules/profile/stores/ProfileThemeManagerStore/ProfileThemeManager";
 import type {StoreActiveProfile} from "@/modules/profile/stores/ActiveProfileStore/ActiveProfile.type";
 import {useLangStore} from "@/langs/LangStore";
-import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager";
+import {useProfileIndexDb} from "@/modules/profile/stores/ProfileIndexDbManager/ProfileIndexDbManager";
 export const DB_STORE_NAME_PROFILE = 'profiles';
 
 export const useActiveProfile = defineStore('activeProfile', (): StoreActiveProfile => {

@@ -1,5 +1,5 @@
 import type {LangTypes} from "@/langs/LangStore";
-import type {ThemeTypes} from "@/modules/profile/stores/ThemeTypes";
+import type {ThemeTypes} from "@/modules/profile/types/ThemeTypes";
 
 export type Profile = {
     id: number;
