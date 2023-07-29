@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import {Form as VeeForm} from 'vee-validate';
+import {Form} from 'vee-validate';
 import Exercise from "@/modules/plan/classes/Exercise/Exercise";
 import PlanGenerator from "@/modules/plan/classes/PlanGenerator/PlanGenerator";
 import type {PlanSettings} from "@/modules/plan/types/PlanSettings";
 import {TIME_H} from "@/modules/plan/types/TimeHType";
 import UiNumberInput from "@/components/ui/form-elements/UiNumberInput/UiNumberInput.vue";
-import {reactive, ref} from "vue";
+import { reactive, ref} from "vue";
 import PlanCalcValues from "@/modules/plan/classes/PlanComputedValues/PlanCalcValues";
 import type CalcPlanMetaData from "@/modules/plan/classes/PlanComputedValues/CalcPlanMetaData";
 import type {PlanMetaData} from "@/modules/plan/types/PlanMetaData";
+import {number, object} from "yup";
+
+const schema = object({
+  cycles: number().required(),
+  sitTime: number().required(),
+  exerciseTime: number().required(),
+});
 
 const exercise = new Exercise();
-
 
 const generated = ref<any>();
 const planCalcValues = reactive<CalcPlanMetaData>(new PlanCalcValues({cycles: 0, sitTime: 0, exerciseTime: 0}));
@@ -32,7 +38,7 @@ const onSubmit = (data: any) => {
 
 <template>
   <UiBlock class="form-plan">
-    <VeeForm ref="formRef" class="ui-form" @submit="onSubmit" >
+    <Form class="ui-form" :validation-schema="schema" @submit="onSubmit" >
 
       <UiSelect name="cycles" placeholder="Number of cycles" :options="TIME_H"/>
 
@@ -63,7 +69,7 @@ const onSubmit = (data: any) => {
         Submit
       </UiButton>
 
-    </VeeForm>
+    </Form>
     <div>
       <pre>{{ generated }}</pre>
     </div>
