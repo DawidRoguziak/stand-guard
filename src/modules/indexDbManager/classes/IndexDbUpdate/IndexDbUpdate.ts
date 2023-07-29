@@ -12,7 +12,7 @@ export default class IndexDbUpdate<DataType, Key extends keyof DataType> impleme
     }
 
 
-    update(id: number, data: Omit<Partial<DataType>, Key>): Promise<void> {
+    update(id: number, data: Omit<DataType, Key>): Promise<void> {
         return new Promise(async (resolve, reject) => {
             const db: IDBDatabase = await this.dbFactory(this.storeName);
             const transaction: IDBTransaction = db.transaction(this.storeName, 'readwrite');
