@@ -5,12 +5,13 @@ import PlanGenerator from "@/modules/plan/classes/PlanGenerator/PlanGenerator";
 import type {PlanSettings} from "@/modules/plan/types/PlanSettings";
 import {TIME_H} from "@/modules/plan/types/TimeHType";
 import UiNumberInput from "@/components/ui/form-elements/UiNumberInput/UiNumberInput.vue";
-import { reactive, ref} from "vue";
+import {reactive, ref} from "vue";
 import PlanCalcValues from "@/modules/plan/classes/PlanComputedValues/PlanCalcValues";
 import type CalcPlanMetaData from "@/modules/plan/classes/PlanComputedValues/CalcPlanMetaData";
 import type {PlanMetaData} from "@/modules/plan/types/PlanMetaData";
 import {number, object} from "yup";
-import { ElMessage } from 'element-plus'
+import {ElMessage} from 'element-plus'
+import type {ExerciseType} from "@/modules/plan/types/Exercise";
 
 
 const schema = object({
@@ -51,11 +52,19 @@ const onSubmit = (data: any) => {
   }
 }
 
+
+const getLabelForExerciseValue = (exercise: ExerciseType, exerciseTime: number) => {
+  if (exercise?.unit === 'counter') {
+    return 'Number of repetitions';
+  }
+  return `Time for exercise (max ${exerciseTime ?? 0} min.)`;
+}
+
 </script>
 
 <template>
   <UiBlock class="form-plan">
-    <Form class="ui-form" :validation-schema="schema" @submit="onSubmit" >
+    <Form class="ui-form" :validation-schema="schema" @submit="onSubmit" v-slot="{values}">
 
       <UiSelect name="cycles" placeholder="Number of cycles" :options="TIME_H"/>
 
@@ -71,20 +80,26 @@ const onSubmit = (data: any) => {
         </template>
       </UiSelect>
 
-      <UiBlock v-if="valid" class="flex gap-5 flex-wrap form-plan__meta-block">
-        <div v-if="planMetaData.estimatedTime">Total time: <span class="text-sm">{{
-            planMetaData?.estimatedTime
-          }}(h)</span></div>
-        <div v-if="planMetaData.totalSitsTime">Total sitting time: <span class="text-sm">{{
-            planMetaData?.totalSitsTime
-          }}(h)</span></div>
-        <div v-if="planMetaData.totalExercises">Total exercises time: <span
-            class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
-      </UiBlock>
+      <UiNumberInput v-if="values.exercise"
+                     name="exerciseValue"
+                     :placeholder="getLabelForExerciseValue(values.exercise, values.exerciseTime)"
+      />
 
-      <UiButton class="mt-4" native-type="submit" is-block>
-        Submit
-      </UiButton>
+
+        <UiBlock v-if="valid" class="flex gap-5 flex-wrap form-plan__meta-block">
+          <div v-if="planMetaData.estimatedTime">Total time: <span class="text-sm">{{
+              planMetaData?.estimatedTime
+            }}(h)</span></div>
+          <div v-if="planMetaData.totalSitsTime">Total sitting time: <span class="text-sm">{{
+              planMetaData?.totalSitsTime
+            }}(h)</span></div>
+          <div v-if="planMetaData.totalExercises">Total exercises time: <span
+              class="text-sm">{{ planMetaData?.totalExercises }}(h)</span></div>
+        </UiBlock>
+
+        <UiButton class="mt-4" native-type="submit" is-block>
+          Submit
+        </UiButton>
 
     </Form>
     <div>

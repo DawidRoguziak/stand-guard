@@ -1,5 +1,4 @@
 import type {ExerciseType} from "@/modules/plan/types/Exercise";
-
 export default class Exercise {
     public exerciseTypes: ExerciseType[] = [
         {
@@ -19,7 +18,7 @@ export default class Exercise {
             label: 'Standing',
             unit: 'time',
             value: null
-        }
+        },
     ];
 
     constructor() {

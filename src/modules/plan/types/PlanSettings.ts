@@ -5,4 +5,5 @@ export type PlanSettings = {
     exerciseTime: number;
     sitTime: number;
     exercise: ExerciseType;
+    exerciseValue: number;
 }

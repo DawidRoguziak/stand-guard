@@ -4,6 +4,7 @@ import {PAGE_HEIGHT_CLASS} from "@/constants/injection-keys";
 import {useI18n} from "vue-i18n";
 import type {Ref} from "vue";
 import FormCreatePlan from "@/modules/plan/forms/FormCreatePlan.vue";
+import PlanList from "@/modules/plan/views/PlanList/PlanList.vue";
 
 let pageHeightClass: Ref<string>;
 try {
@@ -28,8 +29,18 @@ const {t} = useI18n();
         </UiButton>
       </div>
     </div>
+
+    <el-steps :active="2" align-center>
+      <el-step title="Define"/>
+      <el-step title="Save" />
+    </el-steps>
+
     <div>
       <FormCreatePlan />
+    </div>
+
+    <div>
+      <PlanList />
     </div>
   </div>
 </template>
