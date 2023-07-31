@@ -11,7 +11,11 @@ const {setTheme} = useProfileThemeManager();
 const isDark = ref<boolean>(profile.value?.theme === 'dark');
 
 const onChangeTheme = () => {
-  updateDb.update(1, {
+  if (!profile.value?.id) {
+    return;
+  }
+
+  updateDb.update(profile.value?.id, {
     ...profile.value,
     theme: isDark.value ? 'dark' : 'light'
   }).then(() => {
