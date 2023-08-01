@@ -5,6 +5,7 @@ import {useI18n} from "vue-i18n";
 import type {Ref} from "vue";
 import FormCreatePlan from "@/modules/plan/forms/FormCreatePlan.vue";
 import PlanList from "@/modules/plan/views/PlanList/PlanList.vue";
+import FormEditPlanItem from "@/modules/plan/forms/FormEditPlanItem.vue";
 
 let pageHeightClass: Ref<string>;
 try {
@@ -40,6 +41,7 @@ const {t} = useI18n();
     </div>
 
     <div>
+      <FormEditPlanItem />
       <PlanList />
     </div>
   </div>
