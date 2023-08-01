@@ -69,7 +69,7 @@ const {open, close} = useModalActions(modalRef, isOpen, isOpenClass);
   }
 
   &__body {
-    @apply p-1 dark:bg-neutral-950 bg-gray-50;
+    @apply p-1 dark:bg-neutral-900 bg-gray-50;
   }
 
   &__footer {
