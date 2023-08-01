@@ -73,11 +73,6 @@ const getLabelForExerciseValue = (exercise: ExerciseType, exerciseTime: number) 
       <UiNumberInput name="exerciseTime" placeholder="Exercise time"/>
 
       <UiSelect name="exercise" placeholder="Default action" :options="exercise.exerciseTypes">
-        <template #default="{options}">
-          <el-option v-for="opt in options" :value="opt" :label="opt.label">
-            <span>{{ opt?.label }}</span>
-          </el-option>
-        </template>
       </UiSelect>
 
       <UiNumberInput v-if="values.exercise"

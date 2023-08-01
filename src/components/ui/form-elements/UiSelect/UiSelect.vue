@@ -4,7 +4,7 @@ import {ref} from "vue";
 import {ErrorMessage, Field} from "vee-validate";
 
 const {placeholder, name, options, teleported = true} = defineProps<UiSelectProps>();
-const internalValue = ref<any>()
+const internalValue = ref<UiSelectProps>()
 
 </script>
 
@@ -12,17 +12,16 @@ const internalValue = ref<any>()
   <div class="ui-field-input ui-select" :aria-label="placeholder">
     <label v-if="placeholder" class="ui-field-input__label" :for="name">{{ placeholder }}</label>
     <Field :name="name" v-slot="{field}">
-      <el-select :id="name" :model-value="field.value" :placeholder="placeholder"
+      <el-select :id="name" v-model="internalValue" :placeholder="placeholder"
                  :teleported="teleported"
+                 value-key="key"
                  v-bind="field">
-        <slot :options="options">
           <el-option
               v-for="item in options"
-              :key="item.value"
+              :key="item.key"
               :label="item.label"
-              :value="item.value"
+              :value="item"
           />
-        </slot>
       </el-select>
       <ErrorMessage :name="name"/>
     </Field>

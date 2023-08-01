@@ -21,10 +21,10 @@ const {createProfileAndSetAsActiveProfile} = useActiveProfile();
 const onSubmit = (values: any) => {
   showLoader();
   createProfileAndSetAsActiveProfile({
-    lang: values.lang,
+    lang: values.lang.value,
     name: values.name,
     username: values.username,
-    theme: values.theme,
+    theme: values.theme.value,
     plan: null
   })
       .then(async () => {
@@ -37,6 +37,9 @@ const onSubmit = (values: any) => {
         hideLoader();
       });
 }
+
+const langOptions = [{key: 'en', label: 'EN', value: 'en'},{key: 'pl',label: 'Pl', value: 'pl'}];
+const themeOptions = [{key: 'light', label: t('light'), value: 'light'},{key: 'dark', label: t('dark'), value: 'dark'}];
 </script>
 
 <template>
@@ -48,11 +51,11 @@ const onSubmit = (values: any) => {
       <UiTextInput :placeholder="t('profileName')" name="name"/>
       <UiTextInput :placeholder="t('yourName')" name="username"/>
       <UiSelect :placeholder="t('selectLanguage')"
-                :options="[{label: 'EN', value: 'en'},{label: 'Pl', value: 'pl'}]"
+                :options="langOptions"
                 name="lang"/>
 
       <UiSelect :placeholder="t('selectTheme')"
-                :options="[{label: t('light'), value: 'light'},{label: t('dark'), value: 'dark'}]"
+                :options="themeOptions"
                 name="theme"/>
 
       <UiButton is-block native-type="submit">
