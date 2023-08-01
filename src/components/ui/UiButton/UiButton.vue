@@ -25,6 +25,12 @@ const {type = 'primary', nativeType = 'button', isBlock = false} = defineProps<U
       dark:brightness-150 brightness-110;
     }
 
+    &--text {
+      @apply text-white
+      hover:bg-sky-300/10
+      dark:brightness-150 brightness-110;
+    }
+
 
     &--danger {
       @apply text-red-700

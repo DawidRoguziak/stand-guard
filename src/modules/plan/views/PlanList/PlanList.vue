@@ -1,6 +1,8 @@
 <script setup lang="ts">
 
 import UiList from "@/components/ui/UiList/UiList.vue";
+import ModalEditPlanItem from "@/modules/plan/modals/ModalEditPlanItem.vue";
+import {ref} from "vue";
 
 const items = [
   {
@@ -141,6 +143,12 @@ const items = [
   }
 ]
 
+const editModalRef = ref<any>();
+
+const openEditModal = (item: any) => {
+  editModalRef.value.toggle();
+}
+
 </script>
 
 <template>
@@ -148,6 +156,7 @@ const items = [
     <UiList key-field="id" :items="items">
       <template #default="{item}">
         <div class="flex justify-between p-3  cursor-pointer rounded text-white "
+             @click="openEditModal(item)"
              :class="{
            'bg-cyan-600/50 hover:bg-cyan-600/70': item.exercise,
            'bg-teal-600/50 hover:bg-teal-600/70': !item.exercise
@@ -156,7 +165,7 @@ const items = [
             {{ item.exercise?.label }}
             <span v-if="item.exercise?.unit === 'counter'">
               x
-            {{ item.exercise?.value }}
+              {{ item.exercise?.value }}
             </span>
             <span v-else>
               {{ item.exercise?.unit }}
@@ -173,5 +182,6 @@ const items = [
       </template>
     </UiList>
 
+    <ModalEditPlanItem ref="editModalRef"></ModalEditPlanItem>
   </div>
 </template>

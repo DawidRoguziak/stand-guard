@@ -9,7 +9,7 @@ import type CalcPlanMetaData from "@/modules/plan/classes/PlanComputedValues/Cal
 import type {PlanMetaData} from "@/modules/plan/types/PlanMetaData";
 import {number, object, string} from "yup";
 import {ElMessage} from 'element-plus'
-import SelectExercise from "@/modules/plan/components/SelectExercise.vue";
+import SelectExercise from "@/modules/plan/forms/common/SelectExercise.vue";
 
 
 const schema = object({

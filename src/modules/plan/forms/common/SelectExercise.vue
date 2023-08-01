@@ -5,8 +5,6 @@ import {useField} from "vee-validate";
 import Exercise from "@/modules/plan/classes/Exercise/Exercise";
 import type {ExerciseType} from "@/modules/plan/types/Exercise";
 
-
-
 const {value: exercise} = useField<ExerciseType>('exercise');
 const {value: exerciseTime} = useField<number>('exerciseTime');
 
@@ -22,8 +20,10 @@ const getLabelForExerciseValue = (exercise: ExerciseType, exerciseTime: number) 
 </script>
 
 <template>
-<div>
-  <UiSelect name="exercise" placeholder="Default action" :options="exerciseInstance.exerciseTypes" />
+<div class="w-full">
+  <UiSelect name="exercise" placeholder="Default action"
+            :teleported="false"
+            :options="exerciseInstance.exerciseTypes" />
 
 
   <UiNumberInput v-if="exercise"
